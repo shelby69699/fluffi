@@ -21,8 +21,10 @@
     <meta name="twitter:description" content="Stake your FluffFi tokens and earn rewards! 🦊 Join the fluffiest staking revolution on Cardano blockchain.">
     <meta name="twitter:image" content="https://shelby69699.github.io/fluffi/images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png">
 
+    <!-- Add base tag for GitHub Pages routing -->
+    <base href="/fluffi/">
+    
     <link rel="stylesheet" href="css/index-C3j-O4ze.css">
-    <script type="module" src="js/index-DLdXciP5.js"></script>
     
     <style>
         /* Override and ensure proper stacking */
@@ -184,11 +186,220 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Hide React 404 and show custom content */
+        .react-fallback {
+            display: none;
+        }
+
+        .react-working {
+            display: block !important;
+        }
+
+        /* Custom fallback content styles */
+        .fluffi-main {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px 20px;
+        }
+
+        .fluffi-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .fluffi-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .fluffi-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .fluffi-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .stats-banner {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FF6B6B;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
+    <!-- GitHub Pages Router Fix -->
+    <script>
+        // Fix for GitHub Pages routing
+        (function() {
+            var redirect = sessionStorage.redirect;
+            delete sessionStorage.redirect;
+            if (redirect && redirect != location.href) {
+                history.replaceState(null, null, redirect);
+            }
+        })();
+
+        // Set the correct base for the React app
+        if (window.location.hostname === 'shelby69699.github.io') {
+            // GitHub Pages environment
+            window.__REACT_BASE_PATH__ = '/fluffi/';
+        } else {
+            // Local development
+            window.__REACT_BASE_PATH__ = '/';
+        }
+    </script>
+
     <!-- React App Root -->
-    <div id="root"></div>
+    <div id="root">
+        <!-- Fallback content while React loads or if it fails -->
+        <div class="fluffi-main">
+            <img src="images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" alt="FluffFi Logo" class="fluffi-logo">
+            
+            <h1 class="fluffi-title">🦊 FluffFi</h1>
+            <p class="fluffi-subtitle">The Fluffiest Token on Cardano</p>
+            
+            <div class="fluffi-features">
+                <div class="feature-card">
+                    <div class="feature-icon">🏦</div>
+                    <h3 class="feature-title">Staking Platform</h3>
+                    <p class="feature-desc">Earn 69% APY by staking your FLUFF tokens with our advanced staking protocol.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Fast & Secure</h3>
+                    <p class="feature-desc">Built on Cardano blockchain for lightning-fast transactions and maximum security.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Community Driven</h3>
+                    <p class="feature-desc">Governed by the community, for the community. Your voice matters in FluffFi's future.</p>
+                </div>
+            </div>
+
+            <div class="stats-banner">
+                <div class="stats-grid">
+                    <div>
+                        <div class="stat-number">69%</div>
+                        <div class="stat-label">APY</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">$0.15</div>
+                        <div class="stat-label">Token Price</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">1M+</div>
+                        <div class="stat-label">Total Supply</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Staking</div>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#staking" class="cta-button" onclick="document.getElementById('connect-btn').click(); return false;">
+                🚀 Start Staking Now
+            </a>
+        </div>
+    </div>
 
     <!-- Wallet Connector -->
     <div id="wallet-connector">
@@ -230,6 +441,9 @@
         </div>
     </div>
 
+    <!-- Load React after our setup -->
+    <script type="module" src="js/index-DLdXciP5.js"></script>
+
     <script>
         // Wallet connection and staking functionality
         let walletConnected = false;
@@ -253,6 +467,23 @@
         const stakedAmountEl = document.getElementById("staked-amount");
         const pendingRewardsEl = document.getElementById("pending-rewards");
         const totalValueEl = document.getElementById("total-value");
+
+        // Check if React loaded successfully after 3 seconds
+        setTimeout(() => {
+            const rootElement = document.getElementById('root');
+            const hasReactContent = rootElement && (
+                rootElement.children.length > 1 || 
+                (rootElement.children.length === 1 && !rootElement.children[0].classList.contains('fluffi-main'))
+            );
+            
+            if (!hasReactContent) {
+                console.log('🦊 React app fallback mode - showing custom FluffFi interface');
+                // Keep the fallback content visible
+            } else {
+                console.log('✅ React app loaded successfully');
+                // React loaded, can hide fallback if needed
+            }
+        }, 3000);
 
         // Update staking stats display
         function updateStakingStats() {
@@ -415,24 +646,6 @@ Welcome to the fluffiest staking experience on Cardano!
 
 🚀 Connect your Eternal wallet to get started!
         `);
-
-        // Handle React app routing - force it to show the main page
-        window.addEventListener('DOMContentLoaded', () => {
-            // Ensure React router handles the root path correctly
-            if (window.location.pathname === '/' || window.location.pathname === '/fluffi/' || window.location.pathname === '/fluffi/index.html') {
-                // Let React handle the routing
-                console.log('✅ React app should load the main page');
-            }
-        });
-
-        // Override history API to handle GitHub Pages routing
-        if (window.location.pathname.includes('/fluffi') && !window.location.pathname.includes('index.html')) {
-            // Redirect to proper path for React router
-            const newPath = window.location.pathname.replace('/fluffi', '/fluffi/');
-            if (newPath !== window.location.pathname) {
-                window.history.replaceState({}, '', newPath);
-            }
-        }
     </script>
 </body>
 </html>
