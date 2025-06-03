@@ -132,16 +132,49 @@
         .hero-section {
             text-align: center;
             margin-bottom: 4rem;
+            padding-top: 2rem;
+        }
+
+        .hero-fox-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem auto;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-fox-logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .hero-title {
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: 800;
             margin-bottom: 1rem;
+            color: #ff6b35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .hero-title .fluffi-text {
             background: linear-gradient(45deg, #ff6b35, #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        .hero-title .paw-prints {
+            font-size: 3rem;
+            color: #8b5cf6;
         }
 
         .hero-subtitle {
@@ -474,7 +507,19 @@
             }
 
             .hero-title {
+                font-size: 2.5rem;
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+
+            .hero-title .paw-prints {
                 font-size: 2rem;
+            }
+
+            .hero-fox-logo {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 1.5rem;
             }
 
             .hero-subtitle {
@@ -562,7 +607,13 @@
     <!-- Main Content -->
     <main class="main-content">
         <section class="hero-section">
-            <h1 class="hero-title">The Cleverest Fox on Cardano</h1>
+            <div class="hero-fox-logo">
+                <img src="./images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" alt="FluffFi Fox Logo">
+            </div>
+            <h1 class="hero-title">
+                <span class="fluffi-text">FluffFi</span>
+                <span class="paw-prints">🐾</span>
+            </h1>
             <p class="hero-subtitle">
                 Let's make DeFi simpler, smarter, and better.
             </p>
