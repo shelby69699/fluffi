@@ -33,6 +33,7 @@
             line-height: 1.6;
             color: #333;
             background: #ffffff;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text x="4" y="24" font-size="20">🐾</text></svg>'), auto;
         }
 
         /* Top Navigation - Single Clean Header */
@@ -230,45 +231,6 @@
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-        }
-
-        /* Features Section */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: #ffffff;
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid #e0e0e0;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .feature-description {
-            color: #666;
-            line-height: 1.6;
         }
 
         /* Wallet Section */
@@ -535,11 +497,21 @@
                 width: 200px;
                 justify-content: center;
             }
+        }
 
-            .features {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
+        /* Custom paw cursor for interactive elements */
+        a, button, .header-staking-btn, .btn-primary, .btn-secondary, .connect-wallet-btn, .stake-now-btn, .modal-close, .fox-logo, .hero-fox-logo {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text x="4" y="24" font-size="18">🐾</text></svg>'), pointer !important;
+        }
+
+        /* Special paw cursor for wallet address */
+        .wallet-address {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text x="4" y="24" font-size="18">🐾</text></svg>'), copy !important;
+        }
+
+        /* Text selection cursor */
+        input, textarea {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text x="4" y="24" font-size="18">🐾</text></svg>'), text !important;
         }
     </style>
 </head>
@@ -625,33 +597,6 @@
                 <a href="#buy-fluff" class="btn-secondary">
                     Buy $FLUFF
                 </a>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3 class="feature-title">Smart DeFi</h3>
-                <p class="feature-description">
-                    Intelligent protocols that adapt to market conditions, making DeFi accessible for everyone.
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3 class="feature-title">Lightning Fast</h3>
-                <p class="feature-description">
-                    Built on Cardano's robust infrastructure for instant transactions and minimal fees.
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3 class="feature-title">Secure & Audited</h3>
-                <p class="feature-description">
-                    Military-grade security with smart contracts audited by leading blockchain security firms.
-                </p>
             </div>
         </section>
     </main>
