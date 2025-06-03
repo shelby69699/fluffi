@@ -42,3 +42,13 @@ main {
   margin-right: auto;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
+
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
