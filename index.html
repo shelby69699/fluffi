@@ -6,7 +6,7 @@
     <title>FluffFi Staking - Stake Your $FLUFF on Cardano</title>
     <meta name="description" content="Stake your FluffFi tokens and earn rewards! Join the fluffiest staking revolution on Cardano blockchain.">
     <meta name="author" content="FluffFi Team">
-    <link rel="icon" href="images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" type="image/png">
+    <link rel="icon" href="./images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" type="image/png">
 
     <meta property="og:title" content="FluffFi Staking - Stake Your $FLUFF Tokens">
     <meta property="og:description" content="Stake your FluffFi tokens and earn rewards! 🦊 Join the fluffiest staking revolution on Cardano blockchain.">
@@ -21,13 +21,22 @@
     <meta name="twitter:description" content="Stake your FluffFi tokens and earn rewards! 🦊 Join the fluffiest staking revolution on Cardano blockchain.">
     <meta name="twitter:image" content="https://shelby69699.github.io/fluffi/images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png">
 
-    <!-- Add base tag for GitHub Pages routing -->
-    <base href="/fluffi/">
-    
-    <link rel="stylesheet" href="css/index-C3j-O4ze.css">
+    <link rel="stylesheet" href="./css/index-C3j-O4ze.css">
     
     <style>
-        /* Override and ensure proper stacking */
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Wallet connector styles */
         #wallet-connector {
             position: fixed;
             top: 20px;
@@ -70,6 +79,7 @@
             margin: 0;
         }
 
+        /* Staking interface styles */
         .staking-interface {
             position: fixed;
             top: 120px;
@@ -83,7 +93,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-width: 300px;
             backdrop-filter: blur(10px);
-            display: none; /* Initially hidden */
+            display: none;
         }
 
         .staking-interface.active {
@@ -164,13 +174,7 @@
             font-size: 18px;
         }
 
-        /* Ensure React app doesn't interfere */
-        #root {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Loading spinner for better UX */
+        /* Loading spinner */
         .loading-spinner {
             border: 3px solid #f3f3f3;
             border-top: 3px solid #4ECDC4;
@@ -187,16 +191,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Hide React 404 and show custom content */
-        .react-fallback {
-            display: none;
-        }
-
-        .react-working {
-            display: block !important;
-        }
-
-        /* Custom fallback content styles */
+        /* FluffFi main content styles */
         .fluffi-main {
             min-height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -206,8 +201,8 @@
             justify-content: center;
             text-align: center;
             color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 40px 20px;
+            position: relative;
         }
 
         .fluffi-logo {
@@ -321,35 +316,53 @@
             font-size: 0.9rem;
             opacity: 0.8;
         }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            #wallet-connector {
+                right: 10px;
+                top: 10px;
+                min-width: 200px;
+            }
+
+            .staking-interface {
+                right: 10px;
+                top: 100px;
+                min-width: 250px;
+            }
+
+            .fluffi-title {
+                font-size: 2.5rem;
+            }
+
+            .fluffi-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .fluffi-features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* Hide React root content initially, show our custom content */
+        #root {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* If React doesn't load, show our content */
+        .react-loading #root > .fluffi-main {
+            display: flex !important;
+        }
     </style>
 </head>
-<body>
-    <!-- GitHub Pages Router Fix -->
-    <script>
-        // Fix for GitHub Pages routing
-        (function() {
-            var redirect = sessionStorage.redirect;
-            delete sessionStorage.redirect;
-            if (redirect && redirect != location.href) {
-                history.replaceState(null, null, redirect);
-            }
-        })();
-
-        // Set the correct base for the React app
-        if (window.location.hostname === 'shelby69699.github.io') {
-            // GitHub Pages environment
-            window.__REACT_BASE_PATH__ = '/fluffi/';
-        } else {
-            // Local development
-            window.__REACT_BASE_PATH__ = '/';
-        }
-    </script>
-
+<body class="react-loading">
     <!-- React App Root -->
     <div id="root">
-        <!-- Fallback content while React loads or if it fails -->
+        <!-- Beautiful FluffFi Landing Page -->
         <div class="fluffi-main">
-            <img src="images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" alt="FluffFi Logo" class="fluffi-logo">
+            <img src="./images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" alt="FluffFi Logo" class="fluffi-logo" onerror="this.style.display='none'">
             
             <h1 class="fluffi-title">🦊 FluffFi</h1>
             <p class="fluffi-subtitle">The Fluffiest Token on Cardano</p>
@@ -395,9 +408,9 @@
                 </div>
             </div>
             
-            <a href="#staking" class="cta-button" onclick="document.getElementById('connect-btn').click(); return false;">
+            <button class="cta-button" onclick="document.getElementById('connect-btn').click();">
                 🚀 Start Staking Now
-            </a>
+            </button>
         </div>
     </div>
 
@@ -441,8 +454,19 @@
         </div>
     </div>
 
-    <!-- Load React after our setup -->
-    <script type="module" src="js/index-DLdXciP5.js"></script>
+    <!-- Load React app after a delay to let our content show first -->
+    <script>
+        // Try to load React after our content is visible
+        setTimeout(() => {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = './js/index-DLdXciP5.js';
+            script.onerror = () => {
+                console.log('🦊 React app failed to load - showing FluffFi fallback interface');
+            };
+            document.head.appendChild(script);
+        }, 500);
+    </script>
 
     <script>
         // Wallet connection and staking functionality
@@ -467,23 +491,6 @@
         const stakedAmountEl = document.getElementById("staked-amount");
         const pendingRewardsEl = document.getElementById("pending-rewards");
         const totalValueEl = document.getElementById("total-value");
-
-        // Check if React loaded successfully after 3 seconds
-        setTimeout(() => {
-            const rootElement = document.getElementById('root');
-            const hasReactContent = rootElement && (
-                rootElement.children.length > 1 || 
-                (rootElement.children.length === 1 && !rootElement.children[0].classList.contains('fluffi-main'))
-            );
-            
-            if (!hasReactContent) {
-                console.log('🦊 React app fallback mode - showing custom FluffFi interface');
-                // Keep the fallback content visible
-            } else {
-                console.log('✅ React app loaded successfully');
-                // React loaded, can hide fallback if needed
-            }
-        }, 3000);
 
         // Update staking stats display
         function updateStakingStats() {
@@ -632,7 +639,12 @@
         // Initialize display
         updateStakingStats();
 
-        // Add some visual flair
+        // Remove the loading class after content loads
+        window.addEventListener('load', () => {
+            document.body.classList.remove('react-loading');
+        });
+
+        // Welcome message
         console.log(`
 🦊 FluffFi Staking Platform 🦊
 ================================
