@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FluffFi - The Fluffiest Meme Coin on Cardano</title>
-    <meta name="description" content="FluffFi - The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better." />
+    <title>FluffFi</title>
+    <meta name="description" content="The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better." />
     <meta name="author" content="FluffFi Team" />
     <link rel="icon" href="images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" type="image/png" />
 
@@ -34,23 +34,23 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: #f8f9fa;
-            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #ffffff;
+            color: #1a202c;
             min-height: 100vh;
-            overflow-x: hidden;
+            line-height: 1.5;
         }
         
-        /* Header/Navigation */
+        /* Header - Exact match */
         .header {
-            background: #4a5568;
-            padding: 1rem 2rem;
+            background: #2d3748;
+            padding: 0.75rem 1.5rem;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #4a5568;
         }
         
         .nav {
@@ -68,21 +68,22 @@
         }
         
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: #f56500;
+            width: 28px;
+            height: 28px;
+            background: #ea580c;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 18px;
+            font-size: 16px;
         }
         
         .logo-text {
-            color: white;
-            font-size: 1.25rem;
+            color: #ffffff;
+            font-size: 1.125rem;
             font-weight: 600;
+            letter-spacing: -0.025em;
         }
         
         .nav-links {
@@ -95,186 +96,193 @@
             color: #a0aec0;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
         }
         
         .nav-links a:hover {
-            color: white;
+            color: #ffffff;
         }
         
         .connect-wallet {
-            background: #f56500;
+            background: #ea580c;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.375rem;
             color: white;
             font-weight: 600;
+            font-size: 0.875rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.375rem;
         }
         
         .connect-wallet:hover {
-            background: #e55a00;
+            background: #c2410c;
         }
         
-        /* Main Content */
+        /* Main Content - Exact match */
         .main {
-            padding-top: 100px;
+            padding-top: 4rem;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            position: relative;
         }
         
         .hero {
             text-align: center;
-            max-width: 600px;
+            max-width: 32rem;
             padding: 2rem;
         }
         
+        /* Fox Logo - Exact match */
         .fox-logo {
-            width: 120px;
-            height: 120px;
-            background: #f56500;
+            width: 6rem;
+            height: 6rem;
+            background: #ea580c;
             border-radius: 50%;
-            margin: 0 auto 2rem;
+            margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 32px rgba(245, 101, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.25);
             position: relative;
         }
         
-        .fox-logo::before {
-            content: '🦊';
-            font-size: 60px;
-            filter: hue-rotate(10deg);
+        .fox-emoji {
+            font-size: 2.5rem;
+            line-height: 1;
         }
         
+        /* Title - Exact gradient match */
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 3.75rem;
             font-weight: 700;
-            background: linear-gradient(45deg, #f56500, #3182ce, #805ad5);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #ea580c 0%, #3b82f6 50%, #8b5cf6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
         }
         
-        .hero h1::after {
-            content: '🐾';
-            color: #805ad5;
-            font-size: 2rem;
+        .paw-emoji {
+            color: #8b5cf6;
+            font-size: 1.875rem;
+            margin-left: 0.25rem;
         }
         
+        /* Subtitle - Exact match */
         .hero .subtitle {
             font-size: 1.125rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             color: #4a5568;
             line-height: 1.6;
             font-weight: 400;
+            max-width: 28rem;
+            margin-left: auto;
+            margin-right: auto;
         }
         
+        /* Buttons - Exact match */
         .cta-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             justify-content: center;
             flex-wrap: wrap;
         }
         
-        .btn-primary {
-            background: linear-gradient(45deg, #f56500, #ed8936);
+        .btn-lets-go {
+            background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
             color: white;
             padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             font-weight: 600;
             text-decoration: none;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1rem;
+            font-size: 0.875rem;
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
         }
         
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 101, 0, 0.4);
+        .btn-lets-go:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4);
         }
         
-        .btn-secondary {
-            background: white;
-            color: #f56500;
+        .btn-buy-fluff {
+            background: #ffffff;
+            color: #ea580c;
             padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             font-weight: 600;
             text-decoration: none;
-            border: 2px solid #f56500;
+            border: 1.5px solid #ea580c;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1rem;
+            font-size: 0.875rem;
         }
         
-        .btn-secondary:hover {
-            background: #f56500;
+        .btn-buy-fluff:hover {
+            background: #ea580c;
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
         
-        /* Features Grid */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        /* Floating paw prints - Exact purple color */
+        .floating-paw {
+            position: fixed;
+            pointer-events: none;
+            z-index: 10;
+            font-size: 1.25rem;
+            color: rgba(139, 92, 246, 0.4);
+            animation: float-up 6s linear infinite;
         }
         
-        .feature {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            backdrop-filter: blur(10px);
-            text-align: center;
-            transition: transform 0.3s ease;
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) translateX(-10px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10px) translateX(10px) rotate(180deg);
+                opacity: 0;
+            }
         }
         
-        .feature:hover {
-            transform: translateY(-5px);
-            border-color: #ff6b35;
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .feature h3 {
-            color: #ff6b35;
-            margin-bottom: 1rem;
-        }
-        
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
             .nav {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.75rem;
+                padding: 0.5rem 0;
             }
             
             .nav-links {
-                gap: 1rem;
+                gap: 1.5rem;
             }
             
             .hero h1 {
@@ -286,50 +294,19 @@
                 align-items: center;
             }
             
-            .header {
-                padding: 1rem;
-            }
-            
             .main {
-                padding-top: 120px;
-            }
-        }
-        
-        /* Floating paw prints */
-        .floating-paws {
-            position: fixed;
-            pointer-events: none;
-            z-index: 100;
-            font-size: 20px;
-            color: rgba(128, 90, 213, 0.3);
-            animation: float-paw 8s linear infinite;
-        }
-        
-        @keyframes float-paw {
-            0% {
-                transform: translateY(100vh) translateX(-20px) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-20px) translateX(20px) rotate(360deg);
-                opacity: 0;
+                padding-top: 6rem;
             }
         }
     </style>
   </head>
   <body>
     <!-- Floating paw prints -->
-    <div class="floating-paws" style="left: 10%; animation-delay: 0s;">🐾</div>
-    <div class="floating-paws" style="left: 25%; animation-delay: 2s;">🐾</div>
-    <div class="floating-paws" style="left: 50%; animation-delay: 4s;">🐾</div>
-    <div class="floating-paws" style="left: 75%; animation-delay: 6s;">🐾</div>
-    <div class="floating-paws" style="left: 90%; animation-delay: 8s;">🐾</div>
+    <div class="floating-paw" style="left: 10%; animation-delay: 0s;">🐾</div>
+    <div class="floating-paw" style="left: 30%; animation-delay: 1.5s;">🐾</div>
+    <div class="floating-paw" style="left: 50%; animation-delay: 3s;">🐾</div>
+    <div class="floating-paw" style="left: 70%; animation-delay: 4.5s;">🐾</div>
+    <div class="floating-paw" style="left: 90%; animation-delay: 6s;">🐾</div>
     
     <!-- Header -->
     <header class="header">
@@ -344,7 +321,7 @@
                 <li><a href="#roadmap">Roadmap</a></li>
             </ul>
             <button class="connect-wallet" onclick="connectWallet()">
-                🔗 Connect Wallet
+                Connect Wallet
             </button>
         </nav>
     </header>
@@ -352,94 +329,76 @@
     <!-- Main Content -->
     <main class="main">
         <section class="hero">
-            <div class="fox-logo"></div>
+            <div class="fox-logo">
+                <div class="fox-emoji">🦊</div>
+            </div>
             
-            <h1>FluffFi</h1>
+            <h1>FluffFi<span class="paw-emoji">🐾</span></h1>
+            
             <p class="subtitle">
                 The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better.
             </p>
             
             <div class="cta-buttons">
-                <button class="btn-primary" onclick="letsGo()">
+                <button class="btn-lets-go" onclick="letsGo()">
                     🚀 Let's Go!
                 </button>
-                <button class="btn-secondary" onclick="buyFluff()">
+                <button class="btn-buy-fluff" onclick="buyFluff()">
                     📈 Buy $FLUFF
                 </button>
-            </div>
-            
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Moon Mission</h3>
-                    <p>100x potential with the fluffiest community on Cardano</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🌱</div>
-                    <h3>Eco-Friendly</h3>
-                    <p>Built on Cardano's sustainable blockchain technology</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Secure</h3>
-                    <p>Smart contracts audited by the fluffiest security experts</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Utility</h3>
-                    <p>Real-world use cases in the FluffFi ecosystem</p>
-                </div>
             </div>
         </section>
     </main>
     
     <script>
         function connectWallet() {
-            alert('🦊 FluffFi Wallet Connection coming soon! The fluffiest DeFi experience awaits.');
+            alert('🦊 Connect Wallet feature coming soon!');
         }
         
         function letsGo() {
-            alert('🚀 Let\'s go to the moon! FluffFi revolution starts now!');
+            alert('🚀 Let\'s go! FluffFi to the moon!');
         }
         
         function buyFluff() {
-            alert('📈 Buy $FLUFF coming soon! Get ready for the fluffiest gains!');
+            alert('📈 Buy $FLUFF coming soon!');
         }
         
-        // Add dynamic paw prints
-        function createPawPrint() {
+        // Create dynamic paw prints
+        function createPaw() {
             const paw = document.createElement('div');
             paw.textContent = '🐾';
-            paw.className = 'floating-paws';
-            paw.style.left = Math.random() * 100 + '%';
+            paw.className = 'floating-paw';
+            paw.style.left = Math.random() * 90 + '%';
             paw.style.animationDelay = '0s';
-            paw.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            paw.style.animationDuration = (Math.random() * 2 + 4) + 's';
             document.body.appendChild(paw);
             
             setTimeout(() => {
-                paw.remove();
-            }, 8000);
+                if (paw.parentNode) {
+                    paw.remove();
+                }
+            }, 6000);
         }
         
-        // Create paw prints periodically
-        setInterval(createPawPrint, 3000);
+        // Add paw prints every 2 seconds
+        setInterval(createPaw, 2000);
         
-        // Add fox logo click effect
+        // Fox logo interaction
         document.addEventListener('DOMContentLoaded', function() {
             const foxLogo = document.querySelector('.fox-logo');
             foxLogo.addEventListener('click', function() {
-                this.style.transform = 'scale(1.1) rotate(10deg)';
+                this.style.transform = 'scale(1.1) rotate(15deg)';
                 setTimeout(() => {
                     this.style.transform = '';
-                }, 300);
+                }, 200);
                 
-                // Create explosion of paw prints
-                for(let i = 0; i < 5; i++) {
-                    setTimeout(() => createPawPrint(), i * 200);
+                // Burst of paws
+                for(let i = 0; i < 3; i++) {
+                    setTimeout(createPaw, i * 100);
                 }
             });
             
-            console.log('🦊 FluffFi website loaded! Welcome to the fluffiest revolution on Cardano!');
+            console.log('🦊 FluffFi loaded! Welcome to the fox den!');
         });
     </script>
   </body>
