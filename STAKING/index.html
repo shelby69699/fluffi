@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Real Cardano Staking</title>
+  <title>FluffFi Staking</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,17 +14,20 @@
   </nav>
 
   <main>
-    <h1>Stake to Send ADA to Owner</h1>
-    <p id="walletAddress">Not connected</p>
+    <h1>Real ADA Staking</h1>
+    <p id="walletAddress">Connect your Eternal Wallet to start staking</p>
 
     <div class="staking-box">
-      <label for="amount">Amount to stake (in ADA):</label>
-      <input type="number" id="amount" min="0.001" step="0.001" placeholder="2" />
-      <button id="stakeBtn">Stake Now</button>
+      <label for="amount">Amount to stake (ADA):</label>
+      <input type="number" id="amount" min="1" placeholder="2" />
+      <button id="stakeBtn" disabled>Stake ADA Now</button>
     </div>
+
+    <p class="note">⚠️ Requires HTTPS and Eternal Wallet extension<br>
+    Staking address: addr1q8y94q35y2xmh8jjqaqpgw5h6sygku6nx9umejtegykc6e87dfl0l0wv4ys46hssj6cg9h8j9m7esgag7ez6l0xwy3gspn4a84</p>
   </main>
 
-  <script src="https://unpkg.com/@emurgo/cardano-serialization-lib-browser/cardano_serialization_lib.js"></script>
+  <script src="https://unpkg.com/@emurgo/cardano-serialization-lib-browser/dist/cardano_serialization_lib.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
