@@ -1,21 +1,26 @@
-# FluffFi Website
+# FluffFi - The Fluffiest Meme Coin on Cardano 🦊
 
-This is the static clone of the FluffFi website - The Fluffiest Meme Coin on Cardano.
+The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better.
+
+## Live Website
+🌐 **https://shelby69699.github.io/fluffi/**
 
 ## About FluffFi
+FluffFi brings the slyest, fluffiest vibes to the Cardano blockchain. Join the fluffiest fox revolution in crypto!
 
-FluffFi brings the slyest, fluffiest vibes to the Cardano blockchain. Join the fluffiest fox revolution in crypto! 🦊
+### Features
+- 🦊 Professional React-based website
+- 🎨 Modern UI with navigation (Tokenomics, Community, Roadmap)
+- 💼 Connect Wallet functionality
+- 📱 Mobile responsive design
+- 🚀 Optimized for GitHub Pages
 
-## Website Structure
-
-- Static HTML/CSS/JavaScript website
-- Optimized for GitHub Pages deployment
-- No Jekyll processing (`.nojekyll` file included)
-
-## Live Site
-
-The website is deployed at: [GitHub Pages URL]
+### Technology Stack
+- React.js application
+- Cardano blockchain integration
+- Modern CSS styling
+- Responsive design
 
 ---
 
-*FluffFi - Moon potential: 100x!* 🚀 
+**FluffFi - Where fluffiness meets financial freedom!** 🌙🚀
