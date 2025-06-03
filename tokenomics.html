@@ -311,6 +311,146 @@
             color: #333;
         }
 
+        /* Our Inspiration Section */
+        .inspiration-section {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .inspiration-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .inspiration-title .our-text {
+            color: #ff6b35;
+        }
+
+        .inspiration-title .inspiration-text {
+            color: #6366f1;
+        }
+
+        .inspiration-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .inspiration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .inspiration-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .inspiration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .inspiration-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .inspiration-icon.people {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+
+        .inspiration-icon.chat {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+        }
+
+        .inspiration-icon.rewards {
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .inspiration-icon.heart {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .inspiration-card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .inspiration-card-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Ready to Join Us Section */
+        .join-section {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .join-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .join-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .discord-btn {
+            background: linear-gradient(45deg, #ff6b35, #6366f1);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
         @media (max-width: 768px) {
             .main-header {
                 flex-direction: column;
@@ -339,6 +479,23 @@
 
             .features-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .inspiration-title {
+                font-size: 2.2rem;
+            }
+
+            .inspiration-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .join-title {
+                font-size: 2rem;
+            }
+
+            .discord-btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -428,6 +585,61 @@
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Our Inspiration Section -->
+        <section class="inspiration-section">
+            <h2 class="inspiration-title">
+                <span class="our-text">Our</span> <span class="inspiration-text">Inspiration</span>
+            </h2>
+            <p class="inspiration-subtitle">
+                We started FluffFi because we were fed up with projects that promise the moon but deliver nothing. Time to build something real, with real utility, for real people 🦊
+            </p>
+            
+            <div class="inspiration-grid">
+                <div class="inspiration-card">
+                    <div class="inspiration-icon people">👥</div>
+                    <h3 class="inspiration-card-title">Real Community</h3>
+                    <p class="inspiration-card-description">
+                        No bots, no fake hype. Just real people who believe in what we're building.
+                    </p>
+                </div>
+                
+                <div class="inspiration-card">
+                    <div class="inspiration-icon chat">💬</div>
+                    <h3 class="inspiration-card-title">Daily Chats</h3>
+                    <p class="inspiration-card-description">
+                        Share memes, discuss strategies, or just hang out. We're pretty fun to be around.
+                    </p>
+                </div>
+                
+                <div class="inspiration-card">
+                    <div class="inspiration-icon rewards">💡</div>
+                    <h3 class="inspiration-card-title">Community Rewards</h3>
+                    <p class="inspiration-card-description">
+                        Active members get rewarded. It pays to be part of the pack.
+                    </p>
+                </div>
+                
+                <div class="inspiration-card">
+                    <div class="inspiration-icon heart">❤️</div>
+                    <h3 class="inspiration-card-title">Born from Passion</h3>
+                    <p class="inspiration-card-description">
+                        Started by crypto enthusiasts who got tired of overpromised projects that deliver nothing.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ready to Join Us Section -->
+        <section class="join-section">
+            <h2 class="join-title">Ready to Join Us?</h2>
+            <p class="join-subtitle">
+                Come be part of something that actually makes sense. No fluff, just solid tokenomics and a community that gets it.
+            </p>
+            <a href="https://discord.com/invite/aSmaQWTAj2" class="discord-btn" target="_blank">
+                👥 Join Our Discord
+            </a>
         </section>
     </main>
 </body>
