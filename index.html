@@ -27,6 +27,7 @@
     <link rel="stylesheet" crossorigin href="css/index-C3j-O4ze.css">
 
     <style>
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
@@ -34,231 +35,214 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #ffffff;
-            color: #1a202c;
+            color: #2d3748;
             min-height: 100vh;
-            line-height: 1.5;
+            line-height: 1.6;
         }
         
-        /* Header - Exact match */
+        /* Header */
         .header {
             background: #2d3748;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 0;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            border-bottom: 1px solid #4a5568;
         }
         
         .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
         
-        .logo-icon {
-            width: 28px;
-            height: 28px;
-            background: #ea580c;
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: #f56500;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 16px;
+            font-size: 20px;
         }
         
         .logo-text {
             color: #ffffff;
-            font-size: 1.125rem;
-            font-weight: 600;
-            letter-spacing: -0.025em;
+            font-size: 1.25rem;
+            font-weight: 700;
         }
         
-        .nav-links {
+        .nav-menu {
             display: flex;
-            gap: 2rem;
             list-style: none;
+            gap: 2rem;
         }
         
-        .nav-links a {
-            color: #a0aec0;
+        .nav-menu a {
+            color: #cbd5e0;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.875rem;
-            transition: color 0.2s ease;
+            transition: color 0.3s ease;
         }
         
-        .nav-links a:hover {
+        .nav-menu a:hover {
             color: #ffffff;
         }
         
-        .connect-wallet {
-            background: #ea580c;
-            border: none;
-            padding: 0.375rem 0.75rem;
-            border-radius: 0.375rem;
+        .connect-btn {
+            background: #f56500;
             color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
             font-weight: 600;
-            font-size: 0.875rem;
             cursor: pointer;
-            transition: background-color 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.375rem;
+            transition: background 0.3s ease;
         }
         
-        .connect-wallet:hover {
-            background: #c2410c;
+        .connect-btn:hover {
+            background: #e55100;
         }
         
-        /* Main Content - Exact match */
+        /* Main content */
         .main {
-            padding-top: 4rem;
+            padding-top: 5rem;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            position: relative;
         }
         
         .hero {
             text-align: center;
-            max-width: 32rem;
+            max-width: 600px;
             padding: 2rem;
         }
         
-        /* Fox Logo - Exact match */
+        /* Fox logo */
         .fox-logo {
-            width: 6rem;
-            height: 6rem;
-            background: #ea580c;
+            width: 120px;
+            height: 120px;
+            background: #f56500;
             border-radius: 50%;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.25);
-            position: relative;
+            box-shadow: 0 20px 40px rgba(245, 101, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
         
-        .fox-emoji {
-            font-size: 2.5rem;
+        .fox-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .fox-icon {
+            font-size: 60px;
             line-height: 1;
         }
         
-        /* Title - Exact gradient match */
-        .hero h1 {
-            font-size: 3.75rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #ea580c 0%, #8b5cf6 100%);
+        /* Title */
+        .title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #f56500, #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.1;
-            letter-spacing: -0.025em;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
         }
         
-        .paw-emoji {
+        .paw {
             color: #8b5cf6;
-            font-size: 1.875rem;
-            margin-left: 0.25rem;
+            font-size: 2rem;
         }
         
-        /* Subtitle - Exact match */
-        .hero .subtitle {
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
+        /* Subtitle */
+        .subtitle {
+            font-size: 1.25rem;
             color: #4a5568;
-            line-height: 1.6;
-            font-weight: 400;
-            max-width: 28rem;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 3rem;
+            line-height: 1.8;
         }
         
-        /* Buttons - Exact match */
-        .cta-buttons {
+        /* Buttons */
+        .buttons {
             display: flex;
-            gap: 0.75rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
         
-        .btn-lets-go {
-            background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+        .btn-primary {
+            background: linear-gradient(135deg, #f56500, #ff8c00);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            text-decoration: none;
             border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
-        }
-        
-        .btn-lets-go:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4);
-        }
-        
-        .btn-buy-fluff {
-            background: #ffffff;
-            color: #ea580c;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             border-radius: 0.5rem;
+            font-size: 1rem;
             font-weight: 600;
-            text-decoration: none;
-            border: 1.5px solid #ea580c;
             cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 101, 0, 0.4);
         }
         
-        .btn-buy-fluff:hover {
-            background: #ea580c;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 101, 0, 0.6);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #f56500;
+            border: 2px solid #f56500;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #f56500;
             color: white;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
         
-        /* Floating paw prints - Exact purple color */
+        /* Floating paws */
         .floating-paw {
             position: fixed;
+            font-size: 24px;
+            color: rgba(139, 92, 246, 0.6);
             pointer-events: none;
+            animation: float 8s linear infinite;
             z-index: 10;
-            font-size: 1.25rem;
-            color: rgba(139, 92, 246, 0.4);
-            animation: float-up 6s linear infinite;
         }
         
-        @keyframes float-up {
+        @keyframes float {
             0% {
-                transform: translateY(100vh) translateX(-10px) rotate(0deg);
+                transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
             }
             10% {
@@ -268,7 +252,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-10px) translateX(10px) rotate(180deg);
+                transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -277,25 +261,31 @@
         @media (max-width: 768px) {
             .nav {
                 flex-direction: column;
-                gap: 0.75rem;
-                padding: 0.5rem 0;
+                gap: 1rem;
+                padding: 0 1rem;
             }
             
-            .nav-links {
-                gap: 1.5rem;
+            .nav-menu {
+                gap: 1rem;
             }
             
-            .hero h1 {
+            .title {
                 font-size: 2.5rem;
+                flex-direction: column;
+                gap: 0;
             }
             
-            .cta-buttons {
+            .paw {
+                font-size: 1.5rem;
+            }
+            
+            .buttons {
                 flex-direction: column;
                 align-items: center;
             }
             
             .main {
-                padding-top: 6rem;
+                padding-top: 8rem;
             }
         }
     </style>
@@ -303,103 +293,98 @@
   <body>
     <!-- Floating paw prints -->
     <div class="floating-paw" style="left: 10%; animation-delay: 0s;">🐾</div>
-    <div class="floating-paw" style="left: 30%; animation-delay: 1.5s;">🐾</div>
-    <div class="floating-paw" style="left: 50%; animation-delay: 3s;">🐾</div>
-    <div class="floating-paw" style="left: 70%; animation-delay: 4.5s;">🐾</div>
-    <div class="floating-paw" style="left: 90%; animation-delay: 6s;">🐾</div>
+    <div class="floating-paw" style="left: 25%; animation-delay: 2s;">🐾</div>
+    <div class="floating-paw" style="left: 50%; animation-delay: 4s;">🐾</div>
+    <div class="floating-paw" style="left: 75%; animation-delay: 6s;">🐾</div>
+    <div class="floating-paw" style="left: 90%; animation-delay: 8s;">🐾</div>
     
     <!-- Header -->
     <header class="header">
         <nav class="nav">
             <div class="logo">
-                <div class="logo-icon">🦊</div>
+                <div class="logo-circle">🦊</div>
                 <span class="logo-text">FluffFi</span>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
                 <li><a href="#tokenomics">Tokenomics</a></li>
                 <li><a href="#community">Community</a></li>
-                <li><a href="#roadmap">Roadmap</a></li>
             </ul>
-            <button class="connect-wallet" onclick="connectWallet()">
-                Connect Wallet
-            </button>
+            <button class="connect-btn" onclick="connectWallet()">Connect Wallet</button>
         </nav>
     </header>
     
     <!-- Main Content -->
     <main class="main">
-        <section class="hero">
-            <div class="fox-logo">
-                <div class="fox-emoji">🦊</div>
+        <div class="hero">
+            <div class="fox-logo" onclick="foxClick()">
+                <div class="fox-icon">🦊</div>
             </div>
             
-            <h1>FluffFi<span class="paw-emoji">🐾</span></h1>
+            <h1 class="title">
+                FluffFi<span class="paw">🐾</span>
+            </h1>
             
             <p class="subtitle">
                 The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better.
             </p>
             
-            <div class="cta-buttons">
-                <button class="btn-lets-go" onclick="letsGo()">
+            <div class="buttons">
+                <button class="btn-primary" onclick="letsGo()">
                     🚀 Let's Go!
                 </button>
-                <button class="btn-buy-fluff" onclick="buyFluff()">
+                <button class="btn-secondary" onclick="buyFluff()">
                     📈 Buy $FLUFF
                 </button>
             </div>
-        </section>
+        </div>
     </main>
     
     <script>
         function connectWallet() {
-            alert('🦊 Connect Wallet feature coming soon!');
+            alert('🦊 Connect Wallet coming soon!');
         }
         
         function letsGo() {
-            alert('🚀 Let\'s go! FluffFi to the moon!');
+            alert('🚀 Let\'s go to the moon with FluffFi!');
         }
         
         function buyFluff() {
             alert('📈 Buy $FLUFF coming soon!');
         }
         
-        // Create dynamic paw prints
+        function foxClick() {
+            const fox = document.querySelector('.fox-logo');
+            fox.style.transform = 'scale(1.2) rotate(360deg)';
+            setTimeout(() => {
+                fox.style.transform = '';
+            }, 500);
+            
+            // Create paw explosion
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => createPaw(), i * 100);
+            }
+        }
+        
         function createPaw() {
             const paw = document.createElement('div');
-            paw.textContent = '🐾';
             paw.className = 'floating-paw';
-            paw.style.left = Math.random() * 90 + '%';
-            paw.style.animationDelay = '0s';
-            paw.style.animationDuration = (Math.random() * 2 + 4) + 's';
+            paw.textContent = '🐾';
+            paw.style.left = Math.random() * 100 + '%';
+            paw.style.animationDuration = (Math.random() * 3 + 5) + 's';
             document.body.appendChild(paw);
             
             setTimeout(() => {
                 if (paw.parentNode) {
                     paw.remove();
                 }
-            }, 6000);
+            }, 8000);
         }
         
-        // Add paw prints every 2 seconds
-        setInterval(createPaw, 2000);
+        // Continuous paw generation
+        setInterval(createPaw, 3000);
         
-        // Fox logo interaction
-        document.addEventListener('DOMContentLoaded', function() {
-            const foxLogo = document.querySelector('.fox-logo');
-            foxLogo.addEventListener('click', function() {
-                this.style.transform = 'scale(1.1) rotate(15deg)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-                
-                // Burst of paws
-                for(let i = 0; i < 3; i++) {
-                    setTimeout(createPaw, i * 100);
-                }
-            });
-            
-            console.log('🦊 FluffFi loaded! Welcome to the fox den!');
-        });
+        console.log('🦊 FluffFi loaded successfully!');
     </script>
   </body>
 </html>
