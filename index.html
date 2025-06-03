@@ -3,384 +3,565 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FluffFi Staking</title>
-    <link rel="icon" href="./images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" type="image/png">
-    <link rel="stylesheet" href="./css/index-C3j-O4ze.css">
+    <title>FluffFi - The Cleverest Fox on Cardano</title>
+    <meta name="description" content="The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better.">
+    <link rel="icon" href="./images/fox-logo.png" type="image/png">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fluffi.io/">
+    <meta property="og:title" content="FluffFi - The Cleverest Fox on Cardano">
+    <meta property="og:description" content="The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better.">
+    <meta property="og:image" content="https://fluffi.io/images/fox-logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://fluffi.io/">
+    <meta property="twitter:title" content="FluffFi - The Cleverest Fox on Cardano">
+    <meta property="twitter:description" content="The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better.">
+    <meta property="twitter:image" content="https://fluffi.io/images/fox-logo.png">
+
     <style>
-        /* Wallet connector styles */
-        #wallet-connector {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 999999;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-width: 250px;
-        }
-
-        #connect-btn {
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-            border: none;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-bottom: 10px;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        #connect-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
-        }
-
-        #wallet-address {
-            font-size: 12px;
-            color: #E0E0E0;
-            word-break: break-all;
+        * {
             margin: 0;
-        }
-
-        /* Staking interface styles */
-        .staking-interface {
-            position: fixed;
-            top: 120px;
-            right: 20px;
-            z-index: 999998;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-width: 300px;
-            backdrop-filter: blur(10px);
-            display: none;
-        }
-
-        .staking-interface.active {
-            display: block;
-        }
-
-        .staking-interface h3 {
-            margin: 0 0 15px 0;
-            color: #333;
-            font-size: 18px;
-            text-align: center;
-        }
-
-        .staking-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            margin-bottom: 15px;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        .staking-input:focus {
-            outline: none;
-            border-color: #4ECDC4;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+            min-height: 100vh;
         }
 
-        .stake-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border: none;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-bottom: 10px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .stake-btn:hover:not(:disabled) {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-        .stake-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .staking-stats {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-        }
-
-        .stat-item {
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 14px;
+            align-items: center;
         }
 
-        .stat-label {
-            color: #666;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
         }
 
-        .stat-value {
+        .nav-links a {
+            text-decoration: none;
             color: #333;
-            font-weight: bold;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .apy-highlight {
-            color: #FF6B6B;
-            font-size: 18px;
+        .nav-links a:hover {
+            color: #ff6b35;
         }
 
-        /* Loading spinner */
-        .loading-spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #4ECDC4;
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .staking-btn {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .staking-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+
+        .wallet-address {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #666;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .fox-logo {
+            width: 160px;
+            height: 160px;
+            margin-bottom: 2rem;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-right: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: float 3s ease-in-out infinite;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
-        /* Responsive design */
+        .brand-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b35, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.4;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #8b5cf6;
+            padding: 1rem 2.5rem;
+            border: 2px solid #8b5cf6;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: #8b5cf6;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .rocket-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            #wallet-connector {
-                right: 10px;
-                top: 10px;
-                min-width: 200px;
+            .navbar {
+                padding: 1rem;
             }
 
-            .staking-interface {
-                right: 10px;
-                top: 100px;
-                min-width: 250px;
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 1rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
             }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-right {
+                gap: 0.5rem;
+            }
+
+            .wallet-address {
+                display: none;
+            }
+
+            .brand-title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 100px;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .fox-logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .brand-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .staking-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus States for Accessibility */
+        .btn-primary:focus,
+        .btn-secondary:focus,
+        .staking-btn:focus {
+            outline: 2px solid #ff6b35;
+            outline-offset: 2px;
+        }
+
+        .nav-links a:focus {
+            outline: 2px solid #ff6b35;
+            outline-offset: 2px;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
-    <!-- React App Root -->
-    <div id="root"></div>
-
-    <!-- Wallet Connector -->
-    <div id="wallet-connector">
-        <button id="connect-btn">Connect Eternal Wallet</button>
-        <p id="wallet-address"></p>
-    </div>
-
-    <!-- Staking Interface -->
-    <div id="staking-interface" class="staking-interface">
-        <h3>🦊 FluffFi Staking</h3>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-links" id="navLinks">
+            <li><a href="#tokenomics">Tokenomics</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+        </div>
         
-        <input type="number" id="stake-amount" class="staking-input" placeholder="Enter FLUFF amount to stake" min="0" step="0.01">
-        
-        <button id="stake-btn" class="stake-btn" disabled>
-            <span id="stake-btn-text">Connect Wallet First</span>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+            ☰
         </button>
         
-        <button id="unstake-btn" class="stake-btn" disabled>
-            <span id="unstake-btn-text">Unstake All</span>
-        </button>
-        
-        <div class="staking-stats">
-            <div class="stat-item">
-                <span class="stat-label">APY:</span>
-                <span class="stat-value apy-highlight">69%</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Your Staked:</span>
-                <span class="stat-value" id="staked-amount">0 FLUFF</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Pending Rewards:</span>
-                <span class="stat-value" id="pending-rewards">0 FLUFF</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Total Value:</span>
-                <span class="stat-value" id="total-value">$0.00</span>
+        <div class="nav-right">
+            <a href="#staking" class="staking-btn">Staking</a>
+            <div class="wallet-address" id="walletAddress">addr1qx...7k2m</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="loading">
+            <img src="./images/fox-logo.png" alt="FluffFi Fox Logo" class="fox-logo">
+            
+            <h1 class="brand-title">FluffFi</h1>
+            
+            <p class="subtitle">
+                The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better.
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="#get-started" class="btn-primary">
+                    <span class="rocket-icon">🚀</span>
+                    Let's Go!
+                </a>
+                <a href="#buy-fluff" class="btn-secondary">
+                    Buy $FLUFF
+                </a>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Original React App Script -->
-    <script type="module" src="./js/index-DLdXciP5.js"></script>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-grid">
+            <div class="feature-card loading">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Smart DeFi</h3>
+                <p class="feature-description">
+                    Intelligent protocols that adapt to market conditions, making DeFi accessible for everyone.
+                </p>
+            </div>
+            
+            <div class="feature-card loading">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Lightning Fast</h3>
+                <p class="feature-description">
+                    Built on Cardano's robust infrastructure for instant transactions and minimal fees.
+                </p>
+            </div>
+            
+            <div class="feature-card loading">
+                <div class="feature-icon">🛡️</div>
+                <h3 class="feature-title">Secure & Audited</h3>
+                <p class="feature-description">
+                    Military-grade security with smart contracts audited by leading blockchain security firms.
+                </p>
+            </div>
+        </div>
+    </section>
 
     <script>
-        // Wallet connection and staking functionality
-        let walletConnected = false;
-        let stakingData = {
-            staked: 0,
-            rewards: 0,
-            lastUpdate: Date.now()
-        };
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
 
-        // Get DOM elements
-        const connectBtn = document.getElementById("connect-btn");
-        const walletAddressDisplay = document.getElementById("wallet-address");
-        const stakingInterface = document.getElementById("staking-interface");
-        const stakeAmountInput = document.getElementById("stake-amount");
-        const stakeBtn = document.getElementById("stake-btn");
-        const unstakeBtn = document.getElementById("unstake-btn");
-        const stakeBtnText = document.getElementById("stake-btn-text");
-        const unstakeBtnText = document.getElementById("unstake-btn-text");
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
 
-        // Stats elements
-        const stakedAmountEl = document.getElementById("staked-amount");
-        const pendingRewardsEl = document.getElementById("pending-rewards");
-        const totalValueEl = document.getElementById("total-value");
-
-        // Update staking stats display
-        function updateStakingStats() {
-            if (!walletConnected) return;
-
-            // Calculate rewards (69% APY)
-            const now = Date.now();
-            const timeDiff = (now - stakingData.lastUpdate) / 1000; // seconds
-            const rewardRate = 0.69 / (365 * 24 * 3600); // APY to per-second rate
-            stakingData.rewards += stakingData.staked * rewardRate * timeDiff;
-            stakingData.lastUpdate = now;
-
-            // Update display
-            stakedAmountEl.textContent = `${stakingData.staked.toFixed(2)} FLUFF`;
-            pendingRewardsEl.textContent = `${stakingData.rewards.toFixed(6)} FLUFF`;
-            
-            // Mock price calculation ($0.15 per FLUFF)
-            const totalTokens = stakingData.staked + stakingData.rewards;
-            const totalValue = totalTokens * 0.15;
-            totalValueEl.textContent = `$${totalValue.toFixed(2)}`;
-        }
-
-        // Connect wallet function
-        async function connectWallet() {
-            if (!window.cardano || !window.cardano.eternl) {
-                // Simulate wallet connection for demo
-                walletConnected = true;
-                const mockAddress = "addr1qx..." + Math.random().toString(36).substr(2, 20);
-                walletAddressDisplay.textContent = `Connected: ${mockAddress}`;
-                connectBtn.textContent = "✅ Wallet Connected";
-                connectBtn.style.background = "linear-gradient(45deg, #4ECDC4, #44A08D)";
-                
-                // Show staking interface
-                stakingInterface.classList.add("active");
-                
-                // Enable staking buttons
-                stakeBtn.disabled = false;
-                unstakeBtn.disabled = false;
-                stakeBtnText.textContent = "Stake FLUFF";
-                unstakeBtnText.textContent = "Unstake All";
-                
-                // Start updating rewards
-                setInterval(updateStakingStats, 1000);
-                return;
-            }
-
-            try {
-                const api = await window.cardano.eternl.enable();
-                const addresses = await api.getUsedAddresses();
-                const firstAddress = addresses[0];
-
-                walletConnected = true;
-                walletAddressDisplay.textContent = `Connected: ${firstAddress.slice(0, 20)}...`;
-                connectBtn.textContent = "✅ Wallet Connected";
-                connectBtn.style.background = "linear-gradient(45deg, #4ECDC4, #44A08D)";
-                
-                // Show staking interface
-                stakingInterface.classList.add("active");
-                
-                // Enable staking buttons
-                stakeBtn.disabled = false;
-                unstakeBtn.disabled = false;
-                stakeBtnText.textContent = "Stake FLUFF";
-                unstakeBtnText.textContent = "Unstake All";
-                
-                // Start updating rewards
-                setInterval(updateStakingStats, 1000);
-                
-            } catch (err) {
-                console.error("Wallet connection failed", err);
-                walletAddressDisplay.textContent = "Failed to connect wallet.";
-            }
-        }
-
-        // Stake function
-        function stakeTokens() {
-            if (!walletConnected) return;
-
-            const amount = parseFloat(stakeAmountInput.value);
-            if (isNaN(amount) || amount <= 0) return;
-
-            // Simulate staking transaction
-            stakeBtnText.innerHTML = '<span class="loading-spinner"></span>Staking...';
-            stakeBtn.disabled = true;
-
-            setTimeout(() => {
-                stakingData.staked += amount;
-                stakingData.lastUpdate = Date.now();
-                stakeAmountInput.value = '';
-                
-                stakeBtnText.textContent = "Stake FLUFF";
-                stakeBtn.disabled = false;
-                
-                updateStakingStats();
-            }, 2000);
-        }
-
-        // Unstake function
-        function unstakeTokens() {
-            if (!walletConnected || stakingData.staked === 0) return;
-
-            // Simulate unstaking transaction
-            unstakeBtnText.innerHTML = '<span class="loading-spinner"></span>Unstaking...';
-            unstakeBtn.disabled = true;
-
-            setTimeout(() => {
-                const totalAmount = stakingData.staked + stakingData.rewards;
-                stakingData.staked = 0;
-                stakingData.rewards = 0;
-                stakingData.lastUpdate = Date.now();
-                
-                unstakeBtnText.textContent = "Unstake All";
-                unstakeBtn.disabled = false;
-                
-                updateStakingStats();
-            }, 2000);
-        }
-
-        // Event listeners
-        connectBtn.addEventListener("click", connectWallet);
-        stakeBtn.addEventListener("click", stakeTokens);
-        unstakeBtn.addEventListener("click", unstakeTokens);
-
-        // Allow enter key to stake
-        stakeAmountInput.addEventListener("keypress", function(e) {
-            if (e.key === "Enter" && !stakeBtn.disabled) {
-                stakeTokens();
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar')) {
+                navLinks.classList.remove('active');
             }
         });
 
-        // Initialize display
-        updateStakingStats();
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu after clicking
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Add loading animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('loading');
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Wallet address interaction
+        const walletAddress = document.getElementById('walletAddress');
+        walletAddress.addEventListener('click', () => {
+            navigator.clipboard.writeText('addr1qx...7k2m').then(() => {
+                const originalText = walletAddress.textContent;
+                walletAddress.textContent = 'Copied!';
+                setTimeout(() => {
+                    walletAddress.textContent = originalText;
+                }, 2000);
+            });
+        });
+
+        // Add hover effect to logo
+        const foxLogo = document.querySelector('.fox-logo');
+        foxLogo.addEventListener('mouseenter', () => {
+            foxLogo.style.transform = 'scale(1.1) translateY(-10px)';
+        });
+
+        foxLogo.addEventListener('mouseleave', () => {
+            foxLogo.style.transform = 'scale(1) translateY(-10px)';
+        });
+
+        // Parallax effect for background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.body;
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Button click handlers
+        document.querySelector('.btn-primary').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('🚀 Welcome to FluffFi! Get ready for the smartest DeFi experience on Cardano!');
+        });
+
+        document.querySelector('.btn-secondary').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('💰 $FLUFF token purchase coming soon! Stay tuned for launch details.');
+        });
+
+        document.querySelector('.staking-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('🏦 Staking platform launching soon! Earn rewards with your $FLUFF tokens.');
+        });
+
+        // Console welcome message
+        console.log(`
+🦊 FluffFi - The Cleverest Fox on Cardano
+==========================================
+Welcome to FluffFi's landing page!
+
+🚀 Making DeFi simpler, smarter, and better
+⚡ Built on Cardano blockchain
+🛡️ Secure and audited smart contracts
+
+Visit our social channels:
+🐦 Twitter: @FluffFiOfficial
+💬 Discord: discord.gg/fluffi
+📱 Telegram: t.me/fluffi
+        `);
     </script>
 </body>
 </html>

@@ -1,37 +1,69 @@
-# FluffFi Staking Platform 🦊
+# FluffFi - The Cleverest Fox on Cardano 🦊
 
-Welcome to the FluffFi Staking Platform - the fluffiest way to earn rewards on Cardano!
+A beautiful, responsive landing page for FluffFi - making DeFi simpler, smarter, and better on the Cardano blockchain.
 
-## 🚀 Features
+## Features
 
-- **Eternal Wallet Integration**: Connect your Eternal wallet seamlessly
-- **High APY Staking**: Earn 69% APY on your staked FLUFF tokens
-- **Real-time Rewards**: Watch your rewards grow every second
-- **Beautiful UI**: Enjoy a modern, responsive design
-- **Instant Staking/Unstaking**: Stake and unstake your tokens with ease
+- **🎨 Modern Design**: Clean white gradient background with beautiful UI
+- **📱 Fully Responsive**: Optimized for desktop, tablet, and mobile devices
+- **⚡ Fast Performance**: Vanilla HTML/CSS/JS for lightning-fast loading
+- **🛡️ Secure**: No external dependencies, fully self-contained
+- **♿ Accessible**: Proper focus states and ARIA labels for accessibility
 
-## 🎯 How to Use
+## Design Elements
 
-1. **Connect Wallet**: Click the "Connect Eternal Wallet" button in the top right
-2. **Stake Tokens**: Enter the amount of FLUFF tokens you want to stake
-3. **Earn Rewards**: Watch your rewards accumulate at 69% APY
-4. **Unstake**: Withdraw your tokens and rewards anytime
+- Centered fox logo with floating animation
+- Orange and purple gradient branding for "FluffFi"
+- Professional navigation with Tokenomics, Community, and Roadmap links
+- Call-to-action buttons: "Let's Go!" and "Buy $FLUFF"
+- Wallet address display in the top-right corner
+- Feature cards showcasing Smart DeFi, Lightning Fast, and Secure & Audited
 
-## 🛠️ Technical Details
+## Technology Stack
 
-- Built with vanilla JavaScript and modern web technologies
-- Integrates with Cardano's Eternal Wallet
-- Responsive design works on all devices
-- Local storage for demo staking data persistence
+- Pure HTML5
+- CSS3 with modern features (Grid, Flexbox, Gradients, Animations)
+- Vanilla JavaScript (ES6+)
+- No frameworks or external dependencies
 
-## 🌐 Live Site
+## Deployment
 
-Visit the live staking platform at: [https://shelby69699.github.io/fluffi/](https://shelby69699.github.io/fluffi/)
+This site is ready for deployment on GitHub Pages or any static hosting service.
 
-## 🦊 About FluffFi
+## Local Development
 
-FluffFi is the cleverest fox on Cardano, bringing DeFi innovation with a playful touch. Our staking platform combines high yields with an intuitive user experience.
+1. Clone the repository
+2. Open `index.html` in your browser
+3. Or serve with a local server:
+   ```bash
+   python -m http.server 8000
+   ```
+
+## File Structure
+
+```
+fluffi-main/
+├── index.html          # Main landing page
+├── images/
+│   └── fox-logo.png    # FluffFi fox logo
+└── README.md           # This file
+```
+
+## Browser Support
+
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- Mobile browsers
+
+## Contributing
+
+Feel free to submit issues and enhancement requests!
+
+## License
+
+© 2025 FluffFi Team. All rights reserved.
 
 ---
 
-*Made with 🧡 by the FluffFi Team* 
+**FluffFi** - The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better. 
