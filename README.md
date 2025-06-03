@@ -1,26 +1,37 @@
-# FluffFi - The Fluffiest Meme Coin on Cardano 🦊
+# FluffFi Staking Platform 🦊
 
-The cleverest fox on Cardano is here. Let's make DeFi simpler, smarter, and better.
+Welcome to the FluffFi Staking Platform - the fluffiest way to earn rewards on Cardano!
 
-## Live Website
-🌐 **https://shelby69699.github.io/fluffi/**
+## 🚀 Features
 
-## About FluffFi
-FluffFi brings the slyest, fluffiest vibes to the Cardano blockchain. Join the fluffiest fox revolution in crypto!
+- **Eternal Wallet Integration**: Connect your Eternal wallet seamlessly
+- **High APY Staking**: Earn 69% APY on your staked FLUFF tokens
+- **Real-time Rewards**: Watch your rewards grow every second
+- **Beautiful UI**: Enjoy a modern, responsive design
+- **Instant Staking/Unstaking**: Stake and unstake your tokens with ease
 
-### Features
-- 🦊 Professional React-based website
-- 🎨 Modern UI with navigation (Tokenomics, Community, Roadmap)
-- 💼 Connect Wallet functionality
-- 📱 Mobile responsive design
-- 🚀 Optimized for GitHub Pages
+## 🎯 How to Use
 
-### Technology Stack
-- React.js application
-- Cardano blockchain integration
-- Modern CSS styling
-- Responsive design
+1. **Connect Wallet**: Click the "Connect Eternal Wallet" button in the top right
+2. **Stake Tokens**: Enter the amount of FLUFF tokens you want to stake
+3. **Earn Rewards**: Watch your rewards accumulate at 69% APY
+4. **Unstake**: Withdraw your tokens and rewards anytime
+
+## 🛠️ Technical Details
+
+- Built with vanilla JavaScript and modern web technologies
+- Integrates with Cardano's Eternal Wallet
+- Responsive design works on all devices
+- Local storage for demo staking data persistence
+
+## 🌐 Live Site
+
+Visit the live staking platform at: [https://shelby69699.github.io/fluffi/](https://shelby69699.github.io/fluffi/)
+
+## 🦊 About FluffFi
+
+FluffFi is the cleverest fox on Cardano, bringing DeFi innovation with a playful touch. Our staking platform combines high yields with an intuitive user experience.
 
 ---
 
-**FluffFi - Where fluffiness meets financial freedom!** 🌙🚀
+*Made with 🧡 by the FluffFi Team* 
