@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FluffFi Tokenomics - Real Talk: The Numbers</title>
-    <meta name="description" content="Cute on the outside, serious business on the inside. FluffFi tokenomics breakdown.">
+    <title>FluffFi Community - Our Inspiration</title>
+    <meta name="description" content="Join the FluffFi community. Real people, real utility, real results. Built by crypto enthusiasts who got tired of overpromised projects.">
     <link rel="icon" href="./images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" type="image/png">
     
     <style>
@@ -124,11 +124,11 @@
             margin-bottom: 1rem;
         }
 
-        .hero-title .real-talk {
+        .hero-title .our-text {
             color: #ff6b35;
         }
 
-        .hero-title .the-numbers {
+        .hero-title .inspiration-text {
             color: #6366f1;
         }
 
@@ -136,17 +136,25 @@
             font-size: 1.2rem;
             color: #666;
             margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Features Section */
-        .features-grid {
+        /* Our Inspiration Section */
+        .inspiration-section {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .inspiration-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
 
-        .feature-card {
+        .inspiration-card {
             background: white;
             padding: 2rem;
             border-radius: 20px;
@@ -155,160 +163,99 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .feature-card:hover {
+        .inspiration-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .feature-icon {
+        .inspiration-icon {
             width: 60px;
             height: 60px;
-            margin: 0 auto 1rem auto;
+            margin: 0 auto 1.5rem auto;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            margin-bottom: 1.5rem;
         }
 
-        .feature-icon.shield {
+        .inspiration-icon.people {
             background: linear-gradient(45deg, #3b82f6, #1d4ed8);
             color: white;
         }
 
-        .feature-icon.chain {
+        .inspiration-icon.chat {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+        }
+
+        .inspiration-icon.rewards {
             background: linear-gradient(45deg, #f59e0b, #d97706);
             color: white;
         }
 
-        .feature-icon.people {
-            background: linear-gradient(45deg, #8b5cf6, #7c3aed);
+        .inspiration-icon.heart {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
             color: white;
         }
 
-        .feature-title {
-            font-size: 1.5rem;
+        .inspiration-card-title {
+            font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: #333;
         }
 
-        .feature-description {
+        .inspiration-card-description {
             color: #666;
             line-height: 1.6;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
-        /* Tokenomics Section */
-        .tokenomics-section {
+        /* Ready to Join Us Section */
+        .join-section {
+            text-align: center;
             background: white;
             padding: 3rem;
             border-radius: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            margin-bottom: 2rem;
         }
 
-        .tokenomics-title {
+        .join-title {
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             color: #333;
         }
 
-        .tokenomics-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+        .join-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .pie-chart {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto;
-        }
-
-        .chart-circle {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: conic-gradient(
-                #ff6b35 0% 85%,
-                #3b82f6 85% 95%,
-                #8b5cf6 95% 98%,
-                #f3f4f6 98% 100%
-            );
-            position: relative;
-        }
-
-        .chart-circle::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            background: white;
-            border-radius: 50%;
-        }
-
-        .tokenomics-breakdown {
-            text-align: left;
-        }
-
-        .breakdown-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .breakdown-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 1rem;
-        }
-
-        .breakdown-color.orange {
-            background: #ff6b35;
-        }
-
-        .breakdown-color.blue {
-            background: #3b82f6;
-        }
-
-        .breakdown-color.purple {
-            background: #8b5cf6;
-        }
-
-        .breakdown-percent {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-right: 1rem;
-            min-width: 80px;
-        }
-
-        .breakdown-percent.orange {
-            color: #ff6b35;
-        }
-
-        .breakdown-percent.blue {
-            color: #3b82f6;
-        }
-
-        .breakdown-percent.purple {
-            color: #8b5cf6;
-        }
-
-        .breakdown-label {
+        .discord-btn {
+            background: linear-gradient(45deg, #ff6b35, #6366f1);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 25px;
             font-weight: 600;
-            color: #333;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
         }
 
         @media (max-width: 768px) {
@@ -327,18 +274,17 @@
                 font-size: 2.5rem;
             }
 
-            .tokenomics-content {
+            .inspiration-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
             }
 
-            .pie-chart {
-                width: 250px;
-                height: 250px;
+            .join-title {
+                font-size: 2rem;
             }
 
-            .features-grid {
-                grid-template-columns: 1fr;
+            .discord-btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -353,8 +299,8 @@
             <a href="index.html" class="brand-text">FluffFi</a>
         </div>
         <ul class="header-nav">
-            <li><a href="#tokenomics" class="active">Tokenomics</a></li>
-            <li><a href="community.html">Community</a></li>
+            <li><a href="tokenomics.html">Tokenomics</a></li>
+            <li><a href="#community" class="active">Community</a></li>
             <li><a href="index.html#roadmap">Roadmap</a></li>
             <li><a href="index.html" class="back-home">Back to Home</a></li>
         </ul>
@@ -365,69 +311,59 @@
         <!-- Hero Section -->
         <section class="hero-section">
             <h1 class="hero-title">
-                <span class="real-talk">Real Talk:</span> <span class="the-numbers">The Numbers</span>
+                <span class="our-text">Our</span> <span class="inspiration-text">Inspiration</span>
             </h1>
             <p class="hero-subtitle">
-                Cute on the outside, serious business on the inside 🦊
+                We started FluffFi because we were fed up with projects that promise the moon but deliver nothing. Time to build something real, with real utility, for real people 🦊
             </p>
         </section>
 
-        <!-- Features Grid -->
-        <section class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon shield">🛡️</div>
-                <h3 class="feature-title">Rock Solid</h3>
-                <p class="feature-description">
-                    Liquidity locked forever. Contract ownership renounced. We're here to stay 💎
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon chain">🔗</div>
-                <h3 class="feature-title">Earn While You Sleep</h3>
-                <p class="feature-description">
-                    Stake your FluffFi and watch your bag grow bigger every day 💰
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon people">👥</div>
-                <h3 class="feature-title">You Decide</h3>
-                <p class="feature-description">
-                    Big decisions? We vote on them together. Your voice matters here 🗳️
-                </p>
+        <!-- Our Inspiration Section -->
+        <section class="inspiration-section">
+            <div class="inspiration-grid">
+                <div class="inspiration-card">
+                    <div class="inspiration-icon people">👥</div>
+                    <h3 class="inspiration-card-title">Real Community</h3>
+                    <p class="inspiration-card-description">
+                        No bots, no fake hype. Just real people who believe in what we're building.
+                    </p>
+                </div>
+                
+                <div class="inspiration-card">
+                    <div class="inspiration-icon chat">💬</div>
+                    <h3 class="inspiration-card-title">Daily Chats</h3>
+                    <p class="inspiration-card-description">
+                        Share memes, discuss strategies, or just hang out. We're pretty fun to be around.
+                    </p>
+                </div>
+                
+                <div class="inspiration-card">
+                    <div class="inspiration-icon rewards">💡</div>
+                    <h3 class="inspiration-card-title">Community Rewards</h3>
+                    <p class="inspiration-card-description">
+                        Active members get rewarded. It pays to be part of the pack.
+                    </p>
+                </div>
+                
+                <div class="inspiration-card">
+                    <div class="inspiration-icon heart">❤️</div>
+                    <h3 class="inspiration-card-title">Born from Passion</h3>
+                    <p class="inspiration-card-description">
+                        Started by crypto enthusiasts who got tired of overpromised projects that deliver nothing.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- Tokenomics Section -->
-        <section class="tokenomics-section">
-            <h2 class="tokenomics-title">Official Tokenomics</h2>
-            
-            <div class="tokenomics-content">
-                <div class="pie-chart">
-                    <div class="chart-circle"></div>
-                </div>
-
-                <div class="tokenomics-breakdown">
-                    <div class="breakdown-item">
-                        <div class="breakdown-color orange"></div>
-                        <div class="breakdown-percent orange">85%</div>
-                        <div class="breakdown-label">Liquidity Pool</div>
-                    </div>
-                    
-                    <div class="breakdown-item">
-                        <div class="breakdown-color blue"></div>
-                        <div class="breakdown-percent blue">10%</div>
-                        <div class="breakdown-label">Community Rewards (locked)</div>
-                    </div>
-                    
-                    <div class="breakdown-item">
-                        <div class="breakdown-color purple"></div>
-                        <div class="breakdown-percent purple">3%</div>
-                        <div class="breakdown-label">Marketing & Growth</div>
-                    </div>
-                </div>
-            </div>
+        <!-- Ready to Join Us Section -->
+        <section class="join-section">
+            <h2 class="join-title">Ready to Join Us?</h2>
+            <p class="join-subtitle">
+                Come be part of something that actually makes sense. No fluff, just solid tokenomics and a community that gets it.
+            </p>
+            <a href="https://discord.com/invite/aSmaQWTAj2" class="discord-btn" target="_blank">
+                👥 Join Our Discord
+            </a>
         </section>
     </main>
 </body>
