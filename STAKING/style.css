@@ -1,0 +1,44 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #e8f0ff, #f2e9ff);
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #f97316, #7c3aed);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+main {
+  padding: 50px 20px;
+}
+
+.staking-box {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
