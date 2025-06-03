@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FluffFi Community - Our Inspiration</title>
-    <meta name="description" content="Join the FluffFi community. Real people, real utility, real results. Built by crypto enthusiasts who got tired of overpromised projects.">
+    <title>FluffFi Roadmap - The Master Plan</title>
+    <meta name="description" content="Here's where we're headed (spoiler: it's straight up). The FluffFi master plan from token launch to world domination.">
     <link rel="icon" href="./images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" type="image/png">
     
     <style>
@@ -107,155 +107,160 @@
 
         /* Main Content */
         .main-content {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 2rem 1rem;
+            width: 100%;
+            margin: 0;
         }
 
         /* Hero Section */
         .hero-section {
             text-align: center;
             margin-bottom: 4rem;
+            padding: 2rem 0;
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
             margin-bottom: 1rem;
-        }
-
-        .hero-title .our-text {
-            color: #ff6b35;
-        }
-
-        .hero-title .inspiration-text {
-            color: #6366f1;
+            background: linear-gradient(45deg, #ff6b35, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
             font-size: 1.2rem;
             color: #666;
             margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        /* Our Inspiration Section */
-        .inspiration-section {
-            margin: 4rem 0;
-            text-align: center;
-        }
-
-        .inspiration-grid {
+        /* Roadmap Section */
+        .roadmap-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            margin-bottom: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .inspiration-card {
+        .phase-card {
             background: white;
             padding: 2rem;
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
-        .inspiration-card:hover {
+        .phase-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .inspiration-icon {
+        .phase-card.current {
+            border: 3px solid #ff6b35;
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .phase-icon {
             width: 60px;
             height: 60px;
-            margin: 0 auto 1.5rem auto;
             border-radius: 50%;
+            margin: 0 auto 1rem auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
         }
 
-        .inspiration-icon.people {
-            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
-            color: white;
+        .phase-icon.completed {
+            background: #10b981;
         }
 
-        .inspiration-icon.chat {
-            background: linear-gradient(45deg, #10b981, #059669);
-            color: white;
+        .phase-icon.current {
+            background: #ff6b35;
         }
 
-        .inspiration-icon.rewards {
-            background: linear-gradient(45deg, #f59e0b, #d97706);
-            color: white;
+        .phase-icon.future {
+            background: #9ca3af;
         }
 
-        .inspiration-icon.heart {
-            background: linear-gradient(45deg, #ef4444, #dc2626);
-            color: white;
-        }
-
-        .inspiration-card-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .inspiration-card-description {
+        .phase-number {
+            font-size: 0.8rem;
             color: #666;
-            line-height: 1.6;
-            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Ready to Join Us Section */
-        .join-section {
-            text-align: center;
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-
-        .join-title {
-            font-size: 2.5rem;
+        .phase-title {
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: #333;
         }
 
-        .join-subtitle {
+        .phase-items {
+            list-style: none;
+            text-align: left;
+        }
+
+        .phase-items li {
+            padding: 0.3rem 0;
+            color: #666;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .phase-items li::before {
+            content: '•';
+            color: #ff6b35;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Bottom Section */
+        .bottom-section {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+        }
+
+        .motivation-text {
             font-size: 1.2rem;
             color: #666;
             margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-style: italic;
         }
 
-        .discord-btn {
-            background: linear-gradient(45deg, #ff6b35, #6366f1);
+        .next-stop {
+            background: linear-gradient(45deg, #ff6b35, #8b5cf6);
             color: white;
-            padding: 1rem 2.5rem;
-            border: none;
+            padding: 1rem 2rem;
             border-radius: 25px;
             font-weight: 600;
+            font-size: 1.1rem;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
 
-        .discord-btn:hover {
+        .next-stop:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        @media (max-width: 1200px) {
+            .roadmap-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -274,17 +279,14 @@
                 font-size: 2.5rem;
             }
 
-            .inspiration-grid {
+            .roadmap-container {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
             }
 
-            .join-title {
-                font-size: 2rem;
-            }
-
-            .discord-btn {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
+            .main-content {
+                padding: 1rem 0.5rem;
             }
         }
     </style>
@@ -300,8 +302,8 @@
         </div>
         <ul class="header-nav">
             <li><a href="tokenomics.html">Tokenomics</a></li>
-            <li><a href="#community" class="active">Community</a></li>
-            <li><a href="roadmap.html">Roadmap</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="#roadmap" class="active">Roadmap</a></li>
             <li><a href="index.html" class="back-home">Back to Home</a></li>
         </ul>
     </nav>
@@ -310,59 +312,72 @@
     <main class="main-content">
         <!-- Hero Section -->
         <section class="hero-section">
-            <h1 class="hero-title">
-                <span class="our-text">Our</span> <span class="inspiration-text">Inspiration</span>
-            </h1>
+            <h1 class="hero-title">The Master Plan</h1>
             <p class="hero-subtitle">
-                We started FluffFi because we were fed up with projects that promise the moon but deliver nothing. Time to build something real, with real utility, for real people 🦊
+                Here's where we're headed (spoiler: it's straight up) 💎🦊
             </p>
         </section>
 
-        <!-- Our Inspiration Section -->
-        <section class="inspiration-section">
-            <div class="inspiration-grid">
-                <div class="inspiration-card">
-                    <div class="inspiration-icon people">👥</div>
-                    <h3 class="inspiration-card-title">Real Community</h3>
-                    <p class="inspiration-card-description">
-                        No bots, no fake hype. Just real people who believe in what we're building.
-                    </p>
+        <!-- Roadmap Section -->
+        <section class="roadmap-section">
+            <div class="roadmap-container">
+                <!-- Phase 1 -->
+                <div class="phase-card">
+                    <div class="phase-icon completed"></div>
+                    <div class="phase-number">Phase 1</div>
+                    <h3 class="phase-title">Getting Started</h3>
+                    <ul class="phase-items">
+                        <li>FluffFi Token Launch</li>
+                        <li>Building Our Community</li>
+                    </ul>
                 </div>
-                
-                <div class="inspiration-card">
-                    <div class="inspiration-icon chat">💬</div>
-                    <h3 class="inspiration-card-title">Daily Chats</h3>
-                    <p class="inspiration-card-description">
-                        Share memes, discuss strategies, or just hang out. We're pretty fun to be around.
-                    </p>
+
+                <!-- Phase 2 -->
+                <div class="phase-card current">
+                    <div class="phase-icon current"></div>
+                    <div class="phase-number">Phase 2</div>
+                    <h3 class="phase-title">Level Up</h3>
+                    <ul class="phase-items">
+                        <li>Staking Goes Live</li>
+                        <li>Partnership Announcements</li>
+                        <li>Epic Meme Contest</li>
+                    </ul>
                 </div>
-                
-                <div class="inspiration-card">
-                    <div class="inspiration-icon rewards">💡</div>
-                    <h3 class="inspiration-card-title">Community Rewards</h3>
-                    <p class="inspiration-card-description">
-                        Active members get rewarded. It pays to be part of the pack.
-                    </p>
+
+                <!-- Phase 3 -->
+                <div class="phase-card">
+                    <div class="phase-icon future"></div>
+                    <div class="phase-number">Phase 3</div>
+                    <h3 class="phase-title">To The Moon</h3>
+                    <ul class="phase-items">
+                        <li>FluffFi DeFi Platform</li>
+                        <li>Multi-Chain Bridge</li>
+                        <li>NFT Launch</li>
+                    </ul>
                 </div>
-                
-                <div class="inspiration-card">
-                    <div class="inspiration-icon heart">❤️</div>
-                    <h3 class="inspiration-card-title">Born from Passion</h3>
-                    <p class="inspiration-card-description">
-                        Started by crypto enthusiasts who got tired of overpromised projects that deliver nothing.
-                    </p>
+
+                <!-- Phase 4 -->
+                <div class="phase-card">
+                    <div class="phase-icon future"></div>
+                    <div class="phase-number">Phase 4</div>
+                    <h3 class="phase-title">World Domination</h3>
+                    <ul class="phase-items">
+                        <li>FluffFi DAO Launch</li>
+                        <li>Real-World Use Cases</li>
+                        <li>Global Adoption</li>
+                        <li>Fox Empire Complete</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Ready to Join Us Section -->
-        <section class="join-section">
-            <h2 class="join-title">Ready to Join Us?</h2>
-            <p class="join-subtitle">
-                Come be part of something that actually makes sense. No fluff, just solid tokenomics and a community that gets it.
+        <!-- Bottom Section -->
+        <section class="bottom-section">
+            <p class="motivation-text">
+                "Why just hodl when you can flex your way to financial freedom?" 🦊💪
             </p>
-            <a href="https://discord.com/invite/aSmaQWTAj2" class="discord-btn" target="_blank">
-                👥 Join Our Discord
+            <a href="#phase3" class="next-stop">
+                🚀 Next Stop: The Moon!
             </a>
         </section>
     </main>
