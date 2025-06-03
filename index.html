@@ -519,6 +519,113 @@
         input, textarea {
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text x="4" y="24" font-size="18">🐾</text></svg>'), text !important;
         }
+
+        /* Social Links Box */
+        .social-links-box {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            min-width: 280px;
+            border: 2px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .social-links-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .social-links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 107, 53, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .discord-icon {
+            background: linear-gradient(45deg, #5865f2, #4752c4);
+        }
+
+        .twitter-icon {
+            background: linear-gradient(45deg, #1da1f2, #0d8bd9);
+        }
+
+        .social-text {
+            flex: 1;
+        }
+
+        .social-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .social-description {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .social-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.8rem;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #999;
+            cursor: pointer;
+            padding: 0.2rem;
+        }
+
+        .social-close:hover {
+            color: #ff6b35;
+        }
+
+        @media (max-width: 768px) {
+            .social-links-box {
+                bottom: 1rem;
+                right: 1rem;
+                left: 1rem;
+                min-width: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -610,6 +717,28 @@
             </div>
         </section>
     </main>
+
+    <!-- Social Links Box -->
+    <div class="social-links-box" id="socialLinksBox">
+        <button class="social-close" id="closeSocialBox">&times;</button>
+        <h3 class="social-links-title">Come hang with us! 🦊</h3>
+        <div class="social-links-grid">
+            <a href="https://discord.com/invite/aSmaQWTAj2" class="social-link" target="_blank">
+                <div class="social-icon discord-icon">💬</div>
+                <div class="social-text">
+                    <div class="social-name">Discord</div>
+                    <div class="social-description">Where the magic happens</div>
+                </div>
+            </a>
+            <a href="https://x.com/FluffFiOnX" class="social-link" target="_blank">
+                <div class="social-icon twitter-icon">🐦</div>
+                <div class="social-text">
+                    <div class="social-name">Twitter/X</div>
+                    <div class="social-description">Daily fox wisdom</div>
+                </div>
+            </a>
+        </div>
+    </div>
 
     <!-- Load Cardano Serialization Library -->
     <script src="https://unpkg.com/@emurgo/cardano-serialization-lib-browser/cardano_serialization_lib.js"></script>
@@ -922,6 +1051,21 @@ Requirements:
 - Eternal Wallet extension
 - Sufficient ADA balance (amount + fees)
         `);
+
+        // Social Links Box Controls
+        const socialLinksBox = document.getElementById('socialLinksBox');
+        const closeSocialBox = document.getElementById('closeSocialBox');
+
+        // Close social links box
+        closeSocialBox.addEventListener('click', () => {
+            socialLinksBox.style.display = 'none';
+            localStorage.setItem('socialBoxClosed', 'true');
+        });
+
+        // Check if user has closed the box before
+        if (localStorage.getItem('socialBoxClosed') === 'true') {
+            socialLinksBox.style.display = 'none';
+        }
     </script>
 </body>
 </html>
