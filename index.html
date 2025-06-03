@@ -35,49 +35,25 @@
             background: #ffffff;
         }
 
-        /* Top Navigation */
-        .top-nav {
+        /* Top Navigation - Single Clean Header */
+        .main-header {
             background: #ffffff;
             border-bottom: 1px solid #e0e0e0;
             padding: 1rem 2rem;
-        }
-
-        .top-nav-links {
             display: flex;
-            list-style: none;
-            gap: 2rem;
-            justify-content: flex-start;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .top-nav-links a {
-            text-decoration: none;
-            color: #666;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        .top-nav-links a:hover {
-            color: #ff6b35;
-        }
-
-        /* Logo Section */
-        .logo-section {
-            background: #ffffff;
-            padding: 2rem;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .logo-container {
+        .header-left {
             display: flex;
             align-items: center;
             gap: 1rem;
-            max-width: 1200px;
         }
 
         .fox-logo {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: linear-gradient(45deg, #ff6b35, #f7931e);
             padding: 2px;
@@ -91,25 +67,19 @@
         }
 
         .brand-text {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #ff6b35;
         }
 
-        /* Secondary Navigation */
-        .secondary-nav {
-            background: #f8f9fa;
-            padding: 1rem 2rem;
-        }
-
-        .secondary-nav-links {
+        .header-nav {
             display: flex;
             list-style: none;
             gap: 2rem;
-            justify-content: flex-start;
+            margin: 0;
         }
 
-        .secondary-nav-links a {
+        .header-nav a {
             text-decoration: none;
             color: #666;
             font-weight: 500;
@@ -117,8 +87,15 @@
             transition: color 0.3s ease;
         }
 
-        .secondary-nav-links a:hover {
+        .header-nav a:hover {
             color: #ff6b35;
+        }
+
+        /* Remove old navigation styles */
+        .top-nav,
+        .logo-section,
+        .secondary-nav {
+            display: none;
         }
 
         /* Main Content */
@@ -442,26 +419,29 @@
                 margin: 1rem;
             }
 
-            .top-nav, .logo-section, .secondary-nav {
+            .main-header {
                 padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
             }
 
-            .top-nav-links, .secondary-nav-links {
+            .header-left {
+                justify-content: center;
+            }
+
+            .header-nav {
                 gap: 1rem;
                 flex-wrap: wrap;
-            }
-
-            .logo-container {
                 justify-content: center;
             }
 
             .fox-logo {
-                width: 50px;
-                height: 50px;
+                width: 40px;
+                height: 40px;
             }
 
             .brand-text {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
 
             .hero-title {
@@ -497,27 +477,14 @@
     </div>
 
     <!-- Top Navigation -->
-    <nav class="top-nav">
-        <ul class="top-nav-links">
-            <li><a href="#tokenomics">Tokenomics</a></li>
-            <li><a href="#community">Community</a></li>
-            <li><a href="#roadmap">Roadmap</a></li>
-        </ul>
-    </nav>
-
-    <!-- Logo Section -->
-    <section class="logo-section">
-        <div class="logo-container">
+    <nav class="main-header">
+        <div class="header-left">
             <div class="fox-logo">
                 <img src="./images/3ed7b15d-65d7-4b9f-b73f-a3923e3817a4.png" alt="FluffFi Fox Logo">
             </div>
             <div class="brand-text">FluffFi</div>
         </div>
-    </section>
-
-    <!-- Secondary Navigation -->
-    <nav class="secondary-nav">
-        <ul class="secondary-nav-links">
+        <ul class="header-nav">
             <li><a href="#tokenomics">Tokenomics</a></li>
             <li><a href="#community">Community</a></li>
             <li><a href="#roadmap">Roadmap</a></li>
