@@ -1038,10 +1038,11 @@
             stakingModal.classList.add('active');
         });
 
-        document.querySelector('.btn-secondary').addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('💰 $FLUFF token purchase coming soon! Stay tuned for launch details.');
-        });
+        // Removed buy button override - let the HTML link work naturally
+        // document.querySelector('.btn-secondary').addEventListener('click', (e) => {
+        //     e.preventDefault();
+        //     alert('💰 $FLUFF token purchase coming soon! Stay tuned for launch details.');
+        // });
 
         // Check HTTPS on page load
         window.addEventListener('load', () => {
